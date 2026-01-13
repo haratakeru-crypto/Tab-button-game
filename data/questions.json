@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "appType": "Word",
+    "questionText": "デザインタブを探してください",
+    "imagePath": "/Word画像/Word画面.png",
+    "targetZone": {
+      "top": 3.967741935483871,
+      "left": 10.022569444444445,
+      "width": 4,
+      "height": 4
+    },
+    "description": "デザインタブをクリックしてください"
+  },
+  {
+    "id": 2,
+    "appType": "Word",
+    "questionText": "ファイルタブを探してください",
+    "imagePath": "/Word画像/Word画面.png",
+    "targetZone": {
+      "top": 3.967741935483871,
+      "left": 0,
+      "width": 3,
+      "height": 4
+    },
+    "description": "ファイルタブをクリックしてください"
+  },
+  {
+    "id": 3,
+    "appType": "Word",
+    "questionText": "ホームタブを探してください",
+    "imagePath": "/Word画像/Word画面.png",
+    "targetZone": {
+      "top": 4.1,
+      "left": 2.7,
+      "width": 3.5,
+      "height": 4
+    },
+    "description": "ホームタブをクリックしてください"
+  },
+  {
+    "id": 4,
+    "appType": "Word",
+    "questionText": "レイアウトタブを探してください",
+    "imagePath": "/Word画像/Word画面.png",
+    "targetZone": {
+      "top": 3.967741935483871,
+      "left": 13.40798611111111,
+      "width": 4,
+      "height": 4
+    },
+    "description": "レイアウトタブをクリックしてください"
+  },
+  {
+    "id": 5,
+    "appType": "Word",
+    "questionText": "参考資料タブを探してください",
+    "imagePath": "/Word画像/Word画面.png",
+    "targetZone": {
+      "top": 4.129032258064516,
+      "left": 17.2,
+      "width": 4.2,
+      "height": 4
+    },
+    "description": "参考資料タブをクリックしてください"
+  },
+  {
+    "id": 6,
+    "appType": "Word",
+    "questionText": "挿入タブを探してください",
+    "imagePath": "/Word画像/Word画面.png",
+    "targetZone": {
+      "top": 3.967741935483871,
+      "left": 5.5,
+      "width": 3,
+      "height": 4
+    },
+    "description": "挿入タブをクリックしてください"
+  },
+  {
+    "id": 7,
+    "appType": "Word",
+    "questionText": "校閲タブを探してください",
+    "imagePath": "/Word画像/Word画面.png",
+    "targetZone": {
+      "top": 3.967741935483871,
+      "left": 25.5,
+      "width": 3.3,
+      "height": 4
+    },
+    "description": "校閲タブをクリックしてください"
+  }
+]

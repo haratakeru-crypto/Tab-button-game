@@ -1,0 +1,469 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import { Question } from "@/types/question";
+import { isClickInTargetZone } from "@/lib/utils";
+
+interface GameAreaProps {
+  question: Question;
+  onAnswer: (isCorrect: boolean) => void;
+  debugMode?: boolean;
+}
+
+// 問題テキストからタブ名を抽出する関数
+const extractTabName = (questionText: string): string => {
+  // 「〜タブを探してください」からタブ名を抽出
+  const match = questionText.match(/^(.+?)タブを探してください/);
+  if (match) {
+    return match[1];
+  }
+  // 「〜タブを探してください」以外のパターンにも対応
+  const match2 = questionText.match(/^(.+?)タブ/);
+  if (match2) {
+    return match2[1];
+  }
+  return "";
+};
+
+// クリック位置（X座標）からタブ名を推定する関数
+const estimateTabNameFromClickPosition = (percentX: number): string => {
+  // 一般的なWordのタブの位置を想定（画像によって調整が必要な場合があります）
+  if (percentX < 8) {
+    return "ホーム"; // 2文字
+  } else if (percentX < 18) {
+    return "挿入"; // 2文字
+  } else if (percentX < 28) {
+    return "デザイン"; // 3文字
+  } else if (percentX < 38) {
+    return "レイアウト"; // 4文字
+  } else if (percentX < 48) {
+    return "参考資料"; // 5文字
+  } else {
+    return ""; // 推定できない場合は空文字
+  }
+};
+
+// タブ名の文字数に基づいて幅を計算する関数
+const calculateWidthFromTabName = (tabName: string): number => {
+  const charCount = tabName.length;
+  // 文字数に基づいて幅を推定（日本語1文字あたり約1.2-1.5%）
+  // 最小3%、最大9%
+  if (charCount <= 2) {
+    return 4; // ホーム、挿入など
+  } else if (charCount === 3) {
+    return 5; // デザインなど
+  } else if (charCount === 4) {
+    return 6; // レイアウトなど
+  } else if (charCount === 5) {
+    return 7; // 参考資料など
+  } else {
+    return Math.min(8, 3 + charCount * 0.8); // 6文字以上
+  }
+};
+
+export default function GameArea({ question, onAnswer, debugMode = false }: GameAreaProps) {
+  const [showTargetZone, setShowTargetZone] = useState(false);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+  const [debugTargetZone, setDebugTargetZone] = useState<{top: number, left: number, width: number, height: number} | null>(null);
+  const [debugClickCoord, setDebugClickCoord] = useState<{x: number, y: number} | null>(null);
+  const [manualWidth, setManualWidth] = useState<number | null>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // 問題が切り替わった時にターゲットゾーンをリセット
+    setShowTargetZone(false);
+    setDebugTargetZone(null);
+    setDebugClickCoord(null);
+    setManualWidth(null);
+    
+    const updateImageSize = () => {
+      if (imageRef.current) {
+        setImageSize({
+          width: imageRef.current.offsetWidth,
+          height: imageRef.current.offsetHeight,
+        });
+      }
+    };
+
+    updateImageSize();
+    window.addEventListener("resize", updateImageSize);
+    return () => window.removeEventListener("resize", updateImageSize);
+  }, [question]);
+
+  const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!imageRef.current) return;
+    
+    // デバッグモード以外では、既に解答済みの場合は処理しない
+    if (!debugMode && showTargetZone) return;
+
+    const rect = imageRef.current.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+
+    // 画像サイズが0の場合は座標計算をスキップ
+    if (imageSize.width === 0 || imageSize.height === 0) {
+      if (debugMode) {
+        console.log("画像サイズがまだ読み込まれていません");
+      }
+      return;
+    }
+
+    const percentX = (clickX / imageSize.width) * 100;
+    const percentY = (clickY / imageSize.height) * 100;
+
+    const isCorrect = isClickInTargetZone(
+      clickX,
+      clickY,
+      question.targetZone,
+      imageSize.width,
+      imageSize.height
+    );
+
+    if (debugMode) {
+      // 既存のターゲットゾーンがあり、クリック位置がその中にある場合は処理をスキップ
+      if (debugTargetZone) {
+        // クリック位置が既存のデバッグターゲットゾーン内にあるかチェック
+        const isClickInDebugZone = (
+          percentX >= debugTargetZone.left &&
+          percentX <= debugTargetZone.left + debugTargetZone.width &&
+          percentY >= debugTargetZone.top &&
+          percentY <= debugTargetZone.top + debugTargetZone.height
+        );
+        if (isClickInDebugZone) {
+          return; // ターゲットゾーン内をクリックした場合は処理をスキップ
+        }
+      }
+      
+      // 新しいクリック時は、手動設定された幅をリセットして自動計算を使用
+      setManualWidth(null);
+      
+      // クリック位置からタブ名を推定（デバッグモードでは実際のクリック位置を使用）
+      const estimatedTabName = estimateTabNameFromClickPosition(percentX);
+      // 推定できない場合は問題テキストから抽出
+      const tabName = estimatedTabName || extractTabName(question.questionText);
+      
+      // タブ名から幅を自動計算（新しいクリック時は常に自動計算を使用）
+      const calculatedWidth = tabName ? calculateWidthFromTabName(tabName) : 6;
+      
+      const defaultHeight = 4;
+      const debugZone = {
+        top: Math.max(0, percentY - defaultHeight / 2),
+        left: Math.max(0, percentX - calculatedWidth / 2),
+        width: calculatedWidth,
+        height: defaultHeight,
+      };
+      
+      setDebugTargetZone(debugZone);
+      setDebugClickCoord({ x: percentX, y: percentY });
+      
+      // JSON形式で座標を出力（questions.jsonに直接貼り付け可能）
+      const targetZoneJson = JSON.stringify(debugZone, null, 2);
+      console.log(`クリック座標: x=${percentX.toFixed(2)}%, y=${percentY.toFixed(2)}%`);
+      if (tabName) {
+        console.log(`検出されたタブ名: ${tabName} (${tabName.length}文字)`);
+        console.log(`計算された幅: ${calculatedWidth}%`);
+      }
+      console.log(`ターゲットゾーン（JSON形式）:`);
+      console.log(targetZoneJson);
+      console.log(`questions.jsonに貼り付ける形式:`);
+      console.log(`"targetZone": ${targetZoneJson}`);
+      
+      return; // デバッグモードでは通常のゲームフローを実行しない
+    }
+
+    // 正解でも不正解でも、クリック後は常にターゲットゾーンを表示
+    setShowTargetZone(true);
+    onAnswer(isCorrect);
+  };
+
+  const targetZoneStyle = {
+    position: "absolute" as const,
+    top: `${question.targetZone.top}%`,
+    left: `${question.targetZone.left}%`,
+    width: `${question.targetZone.width}%`,
+    height: `${question.targetZone.height}%`,
+    border: showTargetZone ? "3px solid #ef4444" : "none",
+    backgroundColor: showTargetZone ? "rgba(239, 68, 68, 0.1)" : "transparent",
+    pointerEvents: "none" as const,
+  };
+
+  const debugTargetZoneStyle = debugTargetZone ? {
+    position: "absolute" as const,
+    top: `${debugTargetZone.top}%`,
+    left: `${debugTargetZone.left}%`,
+    width: `${debugTargetZone.width}%`,
+    height: `${debugTargetZone.height}%`,
+    border: "3px solid #3b82f6",
+    backgroundColor: "rgba(59, 130, 246, 0.1)",
+    pointerEvents: "none" as const,
+  } : null;
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("クリップボードにコピーしました！");
+    } catch (err) {
+      console.error("コピーに失敗しました:", err);
+    }
+  };
+
+  const updateDebugZoneWidth = (newWidth: number) => {
+    if (debugTargetZone) {
+      setManualWidth(newWidth);
+      // 幅だけを変更し、leftは変更しない（手動調整時は位置を固定）
+      const updatedZone = {
+        ...debugTargetZone,
+        width: newWidth,
+      };
+      setDebugTargetZone(updatedZone);
+    }
+  };
+
+  const updateDebugZoneTop = (newTop: number) => {
+    if (debugTargetZone) {
+      const updatedZone = {
+        ...debugTargetZone,
+        top: Math.max(0, Math.min(100, newTop)),
+      };
+      setDebugTargetZone(updatedZone);
+    }
+  };
+
+  const updateDebugZoneLeft = (newLeft: number) => {
+    if (debugTargetZone) {
+      const updatedZone = {
+        ...debugTargetZone,
+        left: Math.max(0, Math.min(100, newLeft)),
+      };
+      setDebugTargetZone(updatedZone);
+    }
+  };
+
+  const updateDebugZoneHeight = (newHeight: number) => {
+    if (debugTargetZone) {
+      const updatedZone = {
+        ...debugTargetZone,
+        height: Math.max(1, Math.min(20, newHeight)),
+      };
+      setDebugTargetZone(updatedZone);
+    }
+  };
+
+  const saveTargetZone = async () => {
+    if (!debugTargetZone) {
+      alert("ターゲットゾーンが設定されていません");
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/questions", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          questionId: question.id,
+          targetZone: debugTargetZone,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert("ターゲットゾーンを保存しました！ページを再読み込みしてください。");
+        // ページを再読み込みして更新を反映
+        window.location.reload();
+      } else {
+        const error = await response.json();
+        alert(`エラー: ${error.error || "保存に失敗しました"}`);
+      }
+    } catch (error) {
+      console.error("保存エラー:", error);
+      alert("保存に失敗しました");
+    }
+  };
+
+  const tabName = extractTabName(question.questionText);
+  const autoWidth = tabName ? calculateWidthFromTabName(tabName) : 6;
+
+  return (
+    <div className="w-full max-w-6xl mx-auto">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold mb-2">問題 {question.id}</h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300">{question.questionText}</p>
+        {question.description && (
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{question.description}</p>
+        )}
+      </div>
+
+      <div className="relative w-full" onClick={handleImageClick}>
+        <div className="relative w-full" style={{ position: "relative" }}>
+          <img
+            ref={imageRef}
+            src={question.imagePath}
+            alt="Word画面"
+            className="max-w-full h-auto cursor-crosshair select-none"
+            draggable={false}
+            onLoad={() => {
+              // 画像読み込み完了時にサイズを更新
+              if (imageRef.current) {
+                setImageSize({
+                  width: imageRef.current.offsetWidth,
+                  height: imageRef.current.offsetHeight,
+                });
+              }
+            }}
+          />
+          {/* 通常のターゲットゾーン */}
+          {showTargetZone && !debugMode && (
+            <div
+              className="absolute target-zone-animation"
+              style={targetZoneStyle}
+            />
+          )}
+          {/* デバッグモードのターゲットゾーン */}
+          {debugMode && debugTargetZoneStyle && (
+            <div
+              className="absolute target-zone-animation"
+              style={debugTargetZoneStyle}
+            />
+          )}
+        </div>
+        {debugMode && (
+          <div 
+            className="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="text-sm font-semibold mb-2 text-yellow-800 dark:text-yellow-200">
+              デバッグモード: クリック座標とターゲットゾーンが表示されます
+            </div>
+            {tabName && (
+              <div className="mb-2 text-xs text-gray-600 dark:text-gray-400">
+                検出されたタブ名: <strong>{tabName}</strong> ({tabName.length}文字) - 自動計算幅: {autoWidth.toFixed(1)}%
+              </div>
+            )}
+            {debugClickCoord && debugTargetZone && (
+              <div className="space-y-3 text-xs text-gray-700 dark:text-gray-300">
+                <div>
+                  <strong>クリック座標:</strong> x={debugClickCoord.x.toFixed(2)}%, y={debugClickCoord.y.toFixed(2)}%
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <strong>位置 (top):</strong>
+                    <div className="mt-1 flex items-center gap-2">
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        value={debugTargetZone.top.toFixed(1)}
+                        onChange={(e) => updateDebugZoneTop(parseFloat(e.target.value))}
+                        className="w-full px-2 py-1 border rounded text-xs"
+                      />
+                      <span className="text-xs">%</span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>位置 (left):</strong>
+                    <div className="mt-1 flex items-center gap-2">
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        value={debugTargetZone.left.toFixed(1)}
+                        onChange={(e) => updateDebugZoneLeft(parseFloat(e.target.value))}
+                        className="w-full px-2 py-1 border rounded text-xs"
+                      />
+                      <span className="text-xs">%</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <strong>幅 (width):</strong>
+                    <div className="mt-1 flex items-center gap-2">
+                      <input
+                        type="range"
+                        min="3"
+                        max="10"
+                        step="0.1"
+                        value={debugTargetZone.width}
+                        onChange={(e) => updateDebugZoneWidth(parseFloat(e.target.value))}
+                        className="flex-1"
+                      />
+                      <input
+                        type="number"
+                        min="3"
+                        max="10"
+                        step="0.1"
+                        value={debugTargetZone.width}
+                        onChange={(e) => {
+                          const val = parseFloat(e.target.value);
+                          if (!isNaN(val)) {
+                            updateDebugZoneWidth(val);
+                          }
+                        }}
+                        className="w-20 px-2 py-1 border rounded text-xs"
+                      />
+                      <span className="text-xs">%</span>
+                    </div>
+                  </div>
+                  <div>
+                    <strong>高さ (height):</strong>
+                    <div className="mt-1 flex items-center gap-2">
+                      <input
+                        type="range"
+                        min="1"
+                        max="20"
+                        step="0.1"
+                        value={debugTargetZone.height}
+                        onChange={(e) => updateDebugZoneHeight(parseFloat(e.target.value))}
+                        className="flex-1"
+                      />
+                      <input
+                        type="number"
+                        min="1"
+                        max="20"
+                        step="0.1"
+                        value={debugTargetZone.height.toFixed(1)}
+                        onChange={(e) => updateDebugZoneHeight(parseFloat(e.target.value))}
+                        className="w-20 px-2 py-1 border rounded text-xs"
+                      />
+                      <span className="text-xs">%</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <strong>ターゲットゾーン:</strong>
+                  <pre className="mt-1 p-2 bg-white dark:bg-gray-800 rounded text-xs overflow-x-auto">
+                    {JSON.stringify(debugTargetZone, null, 2)}
+                  </pre>
+                </div>
+                <div className="flex gap-2 flex-wrap">
+                  <button
+                    onClick={() => copyToClipboard(JSON.stringify(debugTargetZone, null, 2))}
+                    className="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs"
+                  >
+                    ターゲットゾーンをコピー
+                  </button>
+                  <button
+                    onClick={() => copyToClipboard(`"targetZone": ${JSON.stringify(debugTargetZone, null, 2)}`)}
+                    className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded text-xs"
+                  >
+                    JSON形式でコピー
+                  </button>
+                  <button
+                    onClick={saveTargetZone}
+                    className="px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white rounded text-xs font-bold"
+                  >
+                    修正
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
