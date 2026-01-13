@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect } from "react";
 import { Question } from "@/types/question";
@@ -101,7 +101,8 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
       // 蝠城｡後ユ繧ｭ繧ｹ繝医°繧峨ち繝門錐繧呈歓蜃ｺ
       const tabName = extractTabName(question.questionText);
       
-      // 謇句虚縺ｧ險ｭ螳壹＆繧後◆蟷・′縺ゅｋ蝣ｴ蜷医・縺昴ｌ繧剃ｽｿ逕ｨ縲√↑縺代ｌ縺ｰ繧ｿ繝門錐縺九ｉ險育ｮ・      const calculatedWidth = manualWidth !== null 
+      // 手動で設定した幅がある場合はそれを使用、それ以外はタブ名から計算した幅を使用
+      const calculatedWidth = manualWidth !== null 
         ? manualWidth 
         : tabName ? calculateWidthFromTabName(tabName) : 6;
       
