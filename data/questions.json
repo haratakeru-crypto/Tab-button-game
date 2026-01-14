@@ -5,10 +5,10 @@
     "questionText": "デザインタブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 3.967741935483871,
-      "left": 10.022569444444445,
+      "top": 4.4,
+      "left": 10.109375,
       "width": 4,
-      "height": 4
+      "height": 3.2
     },
     "description": "デザインタブをクリックしてください"
   },

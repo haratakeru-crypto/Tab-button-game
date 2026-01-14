@@ -14,4 +14,7 @@ export interface Question {
   imagePath: string;
   targetZone: TargetZone;
   description?: string;
+  explanationImagePath?: string;
+  explanationText?: string;
+  tabName?: string;
 }

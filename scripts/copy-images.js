@@ -9,13 +9,36 @@ if (!fs.existsSync(destDir)) {
   fs.mkdirSync(destDir, { recursive: true });
 }
 
-// 画像ファイルをコピー
-const sourceFile = path.join(sourceDir, 'Word画面.png');
-const destFile = path.join(destDir, 'Word画面.png');
+// ソースディレクトリが存在しない場合はエラー
+if (!fs.existsSync(sourceDir)) {
+  console.error('ソースディレクトリが見つかりません:', sourceDir);
+  process.exit(1);
+}
 
-if (fs.existsSync(sourceFile)) {
-  fs.copyFileSync(sourceFile, destFile);
-  console.log('画像ファイルをコピーしました:', destFile);
-} else {
-  console.error('ソースファイルが見つかりません:', sourceFile);
+// すべてのPNGファイルをコピー
+try {
+  const files = fs.readdirSync(sourceDir);
+  const pngFiles = files.filter(file => file.toLowerCase().endsWith('.png'));
+  
+  if (pngFiles.length === 0) {
+    console.warn('PNGファイルが見つかりませんでした:', sourceDir);
+  } else {
+    let copiedCount = 0;
+    pngFiles.forEach(file => {
+      const sourceFile = path.join(sourceDir, file);
+      const destFile = path.join(destDir, file);
+      
+      try {
+        fs.copyFileSync(sourceFile, destFile);
+        console.log(`✓ コピーしました: ${file}`);
+        copiedCount++;
+      } catch (error) {
+        console.error(`✗ コピー失敗: ${file}`, error.message);
+      }
+    });
+    console.log(`\n合計 ${copiedCount} / ${pngFiles.length} ファイルをコピーしました。`);
+  }
+} catch (error) {
+  console.error('エラーが発生しました:', error.message);
+  process.exit(1);
 }

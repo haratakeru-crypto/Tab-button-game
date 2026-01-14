@@ -8,6 +8,7 @@ interface GameAreaProps {
   question: Question;
   onAnswer: (isCorrect: boolean) => void;
   debugMode?: boolean;
+  mode?: "tab" | "button";
 }
 
 // 問題テキストからタブ名を抽出する関数
@@ -61,7 +62,7 @@ const calculateWidthFromTabName = (tabName: string): number => {
   }
 };
 
-export default function GameArea({ question, onAnswer, debugMode = false }: GameAreaProps) {
+export default function GameArea({ question, onAnswer, debugMode = false, mode = "tab" }: GameAreaProps) {
   const [showTargetZone, setShowTargetZone] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [debugTargetZone, setDebugTargetZone] = useState<{top: number, left: number, width: number, height: number} | null>(null);
@@ -120,20 +121,6 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
     );
 
     if (debugMode) {
-      // 既存のターゲットゾーンがあり、クリック位置がその中にある場合は処理をスキップ
-      if (debugTargetZone) {
-        // クリック位置が既存のデバッグターゲットゾーン内にあるかチェック
-        const isClickInDebugZone = (
-          percentX >= debugTargetZone.left &&
-          percentX <= debugTargetZone.left + debugTargetZone.width &&
-          percentY >= debugTargetZone.top &&
-          percentY <= debugTargetZone.top + debugTargetZone.height
-        );
-        if (isClickInDebugZone) {
-          return; // ターゲットゾーン内をクリックした場合は処理をスキップ
-        }
-      }
-      
       // 新しいクリック時は、手動設定された幅をリセットして自動計算を使用
       setManualWidth(null);
       
@@ -145,7 +132,7 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
       // タブ名から幅を自動計算（新しいクリック時は常に自動計算を使用）
       const calculatedWidth = tabName ? calculateWidthFromTabName(tabName) : 6;
       
-      const defaultHeight = 4;
+      const defaultHeight = 8;
       const debugZone = {
         top: Math.max(0, percentY - defaultHeight / 2),
         left: Math.max(0, percentX - calculatedWidth / 2),
@@ -196,6 +183,7 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
     border: "3px solid #3b82f6",
     backgroundColor: "rgba(59, 130, 246, 0.1)",
     pointerEvents: "none" as const,
+    zIndex: 10,
   } : null;
 
   const copyToClipboard = async (text: string) => {
@@ -243,7 +231,7 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
     if (debugTargetZone) {
       const updatedZone = {
         ...debugTargetZone,
-        height: Math.max(1, Math.min(20, newHeight)),
+        height: Math.max(1, Math.min(100, newHeight)),
       };
       setDebugTargetZone(updatedZone);
     }
@@ -256,7 +244,8 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
     }
 
     try {
-      const response = await fetch("/api/questions", {
+      const apiEndpoint = mode === "button" ? "/api/button-questions" : "/api/questions";
+      const response = await fetch(apiEndpoint, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -385,7 +374,7 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
                       <input
                         type="range"
                         min="3"
-                        max="10"
+                        max="30"
                         step="0.1"
                         value={debugTargetZone.width}
                         onChange={(e) => updateDebugZoneWidth(parseFloat(e.target.value))}
@@ -394,7 +383,7 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
                       <input
                         type="number"
                         min="3"
-                        max="10"
+                        max="30"
                         step="0.1"
                         value={debugTargetZone.width}
                         onChange={(e) => {
@@ -414,7 +403,7 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
                       <input
                         type="range"
                         min="1"
-                        max="20"
+                        max="100"
                         step="0.1"
                         value={debugTargetZone.height}
                         onChange={(e) => updateDebugZoneHeight(parseFloat(e.target.value))}
@@ -423,7 +412,7 @@ export default function GameArea({ question, onAnswer, debugMode = false }: Game
                       <input
                         type="number"
                         min="1"
-                        max="20"
+                        max="100"
                         step="0.1"
                         value={debugTargetZone.height.toFixed(1)}
                         onChange={(e) => updateDebugZoneHeight(parseFloat(e.target.value))}
