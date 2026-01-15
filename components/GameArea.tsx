@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Question } from "@/types/question";
+import { Question, AppType } from "@/types/question";
 import { isClickInTargetZone } from "@/lib/utils";
 
 interface GameAreaProps {
@@ -9,6 +9,7 @@ interface GameAreaProps {
   onAnswer: (isCorrect: boolean) => void;
   debugMode?: boolean;
   mode?: "tab" | "button";
+  appType?: AppType;
 }
 
 // 問題テキストからタブ名を抽出する関数
@@ -62,7 +63,7 @@ const calculateWidthFromTabName = (tabName: string): number => {
   }
 };
 
-export default function GameArea({ question, onAnswer, debugMode = false, mode = "tab" }: GameAreaProps) {
+export default function GameArea({ question, onAnswer, debugMode = false, mode = "tab", appType = "Word" }: GameAreaProps) {
   const [showTargetZone, setShowTargetZone] = useState(false);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [debugTargetZone, setDebugTargetZone] = useState<{top: number, left: number, width: number, height: number} | null>(null);
@@ -270,6 +271,18 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
     console.log("現在のターゲットゾーンを表示:", targetZone);
   };
 
+  // 科目とモードに応じたAPIエンドポイントを取得
+  const getApiEndpoint = () => {
+    if (appType === "Excel") {
+      return mode === "button" ? "/api/excel-button-questions" : "/api/excel-questions";
+    } else if (appType === "PowerPoint") {
+      return mode === "button" ? "/api/powerpoint-button-questions" : "/api/powerpoint-questions";
+    } else {
+      // Word（デフォルト）
+      return mode === "button" ? "/api/button-questions" : "/api/questions";
+    }
+  };
+
   const saveTargetZone = async () => {
     if (!debugTargetZone) {
       alert("ターゲットゾーンが設定されていません");
@@ -277,7 +290,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
     }
 
     try {
-      const apiEndpoint = mode === "button" ? "/api/button-questions" : "/api/questions";
+      const apiEndpoint = getApiEndpoint();
       const response = await fetch(apiEndpoint, {
         method: "PUT",
         headers: {
@@ -305,7 +318,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
 
   const saveExplanationText = async () => {
     try {
-      const apiEndpoint = mode === "button" ? "/api/button-questions" : "/api/questions";
+      const apiEndpoint = getApiEndpoint();
       const response = await fetch(apiEndpoint, {
         method: "PUT",
         headers: {

@@ -439,7 +439,7 @@ export default function Home() {
         </header>
 
         {/* ゲームエリア */}
-        <GameArea question={currentQuestion} onAnswer={handleAnswer} debugMode={debugMode} mode={mode} />
+        <GameArea question={currentQuestion} onAnswer={handleAnswer} debugMode={debugMode} mode={mode} appType={appType} />
 
         {/* フィードバックエリア */}
         <FeedbackArea
