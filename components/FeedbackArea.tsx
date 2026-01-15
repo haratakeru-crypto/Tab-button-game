@@ -18,6 +18,7 @@ interface FeedbackAreaProps {
   isCorrect: boolean | null;
   onNext: () => void;
   showNext: boolean;
+  isLastQuestion?: boolean;
   questionId?: number;
   explanationImagePath?: string;
   explanationImages?: ExplanationImage[];
@@ -31,6 +32,7 @@ export default function FeedbackArea({
   isCorrect,
   onNext,
   showNext,
+  isLastQuestion = false,
   questionId,
   explanationImagePath,
   explanationImages,
@@ -191,9 +193,13 @@ export default function FeedbackArea({
         {showNext && (
           <button
             onClick={onNext}
-            className="mt-4 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+            className={`mt-4 px-6 py-3 font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg ${
+              isLastQuestion
+                ? "bg-green-500 hover:bg-green-600 text-white"
+                : "bg-blue-500 hover:bg-blue-600 text-white"
+            }`}
           >
-            次へ
+            {isLastQuestion ? "スコア画面へ" : "次へ"}
           </button>
         )}
       </div>

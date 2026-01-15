@@ -28,6 +28,8 @@ export default function Home() {
   const [gameCompleted, setGameCompleted] = useState(false);
   const [debugMode, setDebugMode] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [wrongQuestionIds, setWrongQuestionIds] = useState<number[]>([]);
+  const [allQuestions, setAllQuestions] = useState<Question[]>([]); // 全問題を保持（解きなおし用）
 
   // URLパラメータを読み取る関数
   const readUrlParams = () => {
@@ -97,29 +99,35 @@ export default function Home() {
             : (powerpointQuestionsData as Question[]);
         }
 
+        let loadedQuestions: Question[] = [];
+        
         if (mode === "button") {
           // ボタンモードの場合はAPIから最新データを取得
           try {
             const response = await fetch(apiEndpoint);
             if (response.ok) {
               const data = await response.json();
-              setQuestions(data.questions.map((q: Question) => ({ ...q })));
+              loadedQuestions = data.questions.map((q: Question) => ({ ...q }));
             } else {
               console.error("APIエラー:", response.statusText);
-              setQuestions(staticData.map((q) => ({ ...q })));
+              loadedQuestions = staticData.map((q) => ({ ...q }));
             }
           } catch {
-            setQuestions(staticData.map((q) => ({ ...q })));
+            loadedQuestions = staticData.map((q) => ({ ...q }));
           }
         } else {
           // タブモードの場合は静的データを使用
-          setQuestions(staticData.map((q) => ({ ...q })));
+          loadedQuestions = staticData.map((q) => ({ ...q }));
         }
+        
+        setQuestions(loadedQuestions);
+        setAllQuestions(loadedQuestions); // 全問題を保持
 
         setCurrentQuestionIndex(0);
         setScore({ correct: 0, total: 0 });
         setIsCorrect(null);
         setGameCompleted(false);
+        setWrongQuestionIds([]);
       } catch (error) {
         console.error("データ読み込みエラー:", error);
       } finally {
@@ -138,6 +146,14 @@ export default function Home() {
     setIsCorrect(correct);
     if (correct) {
       setScore((prev) => ({ ...prev, correct: prev.correct + 1 }));
+    } else {
+      // 不正解の場合、問題IDを記録（重複なし）
+      setWrongQuestionIds((prev) => {
+        if (!prev.includes(currentQuestion.id)) {
+          return [...prev, currentQuestion.id];
+        }
+        return prev;
+      });
     }
     setScore((prev) => ({ ...prev, total: prev.total + 1 }));
   };
@@ -168,10 +184,24 @@ export default function Home() {
   };
 
   const handleRestart = () => {
+    // 全問題に戻す
+    setQuestions(allQuestions);
     setCurrentQuestionIndex(0);
     setScore({ correct: 0, total: 0 });
     setIsCorrect(null);
     setGameCompleted(false);
+    setWrongQuestionIds([]);
+  };
+
+  const handleRetryWrong = () => {
+    // 間違えた問題のみでゲームを再開
+    const wrongQuestions = allQuestions.filter((q) => wrongQuestionIds.includes(q.id));
+    setQuestions(wrongQuestions);
+    setCurrentQuestionIndex(0);
+    setScore({ correct: 0, total: 0 });
+    setIsCorrect(null);
+    setGameCompleted(false);
+    setWrongQuestionIds([]);
   };
 
   const handleExplanationSaved = (questionId: number, text: string) => {
@@ -248,34 +278,48 @@ export default function Home() {
               正答率: {((score.correct / score.total) * 100).toFixed(1)}%
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={handleRestart}
-              className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-            >
-              もう一度プレイ
-            </button>
-            {mode === "tab" ? (
+          <div className="flex flex-col gap-4">
+            {/* メインボタン */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={goToButtonMode}
-                className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                onClick={handleRestart}
+                className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               >
-                ボタン探しゲームへ
+                もう一度プレイ
               </button>
-            ) : (
+              {wrongQuestionIds.length > 0 && (
+                <button
+                  onClick={handleRetryWrong}
+                  className="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                >
+                  間違えた問題を解きなおす（{wrongQuestionIds.length}問）
+                </button>
+              )}
+            </div>
+            {/* モード切替ボタン */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {mode === "tab" ? (
+                <button
+                  onClick={goToButtonMode}
+                  className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                >
+                  ボタン探しゲームへ
+                </button>
+              ) : (
+                <button
+                  onClick={goToTabMode}
+                  className="px-8 py-3 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                >
+                  タブ探しゲームへ
+                </button>
+              )}
               <button
-                onClick={goToTabMode}
-                className="px-8 py-3 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                onClick={goToSubjectSelection}
+                className="px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               >
-                タブ探しゲームへ
+                科目選択に戻る
               </button>
-            )}
-            <button
-              onClick={goToSubjectSelection}
-              className="px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-            >
-              科目選択に戻る
-            </button>
+            </div>
           </div>
         </div>
       </div>
@@ -387,6 +431,7 @@ export default function Home() {
           isCorrect={isCorrect}
           onNext={handleNext}
           showNext={isCorrect !== null}
+          isLastQuestion={currentQuestionIndex === questions.length - 1}
           questionId={currentQuestion.id}
           explanationImagePath={currentQuestion.explanationImagePath}
           explanationImages={currentQuestion.explanationImages}
