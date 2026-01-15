@@ -36,3 +36,6 @@ next-env.d.ts
 
 # backup files
 components/GameArea_backup.tsx
+
+# Local Netlify folder
+.netlify
