@@ -13,7 +13,7 @@
     },
     "description": "印刷の向きを変更するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説レイアウト印刷の向き.png",
-    "explanationText": ""
+    "explanationText": "印刷の向きを縦向きや横向きに変えるボタンです。\n見た目（レイアウト）が変わるのでレイアウトタブにあります。"
   },
   {
     "id": 2,
@@ -28,8 +28,54 @@
       "height": 55.3
     },
     "description": "余白を設定するボタンをクリックしてください",
-    "explanationImagePath": "/Word画像/解説レイアウト余白設定後.png",
-    "explanationText": ""
+    "explanationImagePath": "",
+    "explanationImages": [
+      {
+        "path": "/Word画像/解説レイアウト余白設定前.png",
+        "label": "余白設定前",
+        "markers": [
+          {
+            "top": 12,
+            "left": 14
+          },
+          {
+            "top": 12,
+            "left": 86
+          },
+          {
+            "top": 87,
+            "left": 14
+          },
+          {
+            "top": 87,
+            "left": 86
+          }
+        ]
+      },
+      {
+        "path": "/Word画像/解説レイアウト余白設定後.png",
+        "label": "余白設定後",
+        "markers": [
+          {
+            "top": 5,
+            "left": 7
+          },
+          {
+            "top": 5,
+            "left": 93
+          },
+          {
+            "top": 95,
+            "left": 7
+          },
+          {
+            "top": 95,
+            "left": 93
+          }
+        ]
+      }
+    ],
+    "explanationText": "赤枠に囲まれているL字のような記号（トンボ）が広くなります。\n見た目が変わるのでレイアウトタブにあります。"
   },
   {
     "id": 3,
@@ -44,7 +90,7 @@
       "height": 54.7
     },
     "description": "用紙のサイズを変更するボタンをクリックしてください",
-    "explanationImagePath": "",
+    "explanationImagePath": "/Word画像/解説レイアウトサイズ.png",
     "explanationText": ""
   },
   {

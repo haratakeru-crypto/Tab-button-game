@@ -2,12 +2,25 @@
 
 import { useState, useEffect } from "react";
 
+interface ImageMarker {
+  top: number;
+  left: number;
+  size?: number;
+}
+
+interface ExplanationImage {
+  path: string;
+  label: string;
+  markers?: ImageMarker[];
+}
+
 interface FeedbackAreaProps {
   isCorrect: boolean | null;
   onNext: () => void;
   showNext: boolean;
   questionId?: number;
   explanationImagePath?: string;
+  explanationImages?: ExplanationImage[];
   explanationText?: string;
   debugMode?: boolean;
   mode?: "tab" | "button";
@@ -20,6 +33,7 @@ export default function FeedbackArea({
   showNext,
   questionId,
   explanationImagePath,
+  explanationImages,
   explanationText,
   debugMode = false,
   mode = "tab",
@@ -58,8 +72,52 @@ export default function FeedbackArea({
     }
   };
 
-  const ExplanationImage = () =>
-    explanationImagePath ? (
+  const ExplanationImage = () => {
+    // 複数画像がある場合
+    if (explanationImages && explanationImages.length > 0) {
+      return (
+        <div className="mt-4">
+          <div className="flex gap-4 flex-wrap justify-center">
+            {explanationImages.map((img, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <p className="text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">{img.label}</p>
+                <div className="relative">
+                  <img
+                    src={img.path}
+                    alt={img.label}
+                    className="max-w-[250px] h-auto rounded border border-gray-200 dark:border-gray-700"
+                  />
+                  {/* マーカー表示 */}
+                  {img.markers && img.markers.map((marker, mIndex) => (
+                    <div
+                      key={mIndex}
+                      className="absolute pointer-events-none"
+                      style={{
+                        top: `${marker.top}%`,
+                        left: `${marker.left}%`,
+                        transform: 'translate(-50%, -50%)',
+                      }}
+                    >
+                      <div 
+                        className="animate-pulse"
+                        style={{
+                          width: `${marker.size || 40}px`,
+                          height: `${marker.size || 40}px`,
+                          border: '3px solid #ef4444',
+                          backgroundColor: 'transparent',
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    // 単一画像の場合
+    return explanationImagePath ? (
       <div className="mt-4">
         <img
           src={explanationImagePath}
@@ -68,6 +126,7 @@ export default function FeedbackArea({
         />
       </div>
     ) : null;
+  };
 
   const ExplanationText = () => {
     if (!canEditExplanation) {
@@ -121,7 +180,7 @@ export default function FeedbackArea({
           )}
         </div>
 
-        {(explanationImagePath || explanationText || canEditExplanation) && (
+        {(explanationImagePath || (explanationImages && explanationImages.length > 0) || explanationText || canEditExplanation) && (
           <div className="mt-4 text-left bg-white/70 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
             <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">解説</h4>
             <ExplanationImage />

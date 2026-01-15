@@ -7,6 +7,18 @@ export interface TargetZone {
   height: number; // パーセンテージ (0-100)
 }
 
+export interface ImageMarker {
+  top: number;    // パーセンテージ (0-100)
+  left: number;   // パーセンテージ (0-100)
+  size?: number;  // マーカーサイズ（px）、デフォルト30
+}
+
+export interface ExplanationImage {
+  path: string;
+  label: string;
+  markers?: ImageMarker[];  // 強調表示するマーカーの位置
+}
+
 export interface Question {
   id: number;
   appType: AppType;
@@ -15,6 +27,7 @@ export interface Question {
   targetZone: TargetZone;
   description?: string;
   explanationImagePath?: string;
+  explanationImages?: ExplanationImage[];
   explanationText?: string;
   tabName?: string;
 }

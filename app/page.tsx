@@ -239,6 +239,7 @@ export default function Home() {
           showNext={isCorrect !== null}
           questionId={currentQuestion.id}
           explanationImagePath={currentQuestion.explanationImagePath}
+          explanationImages={currentQuestion.explanationImages}
           explanationText={currentQuestion.explanationText}
           debugMode={debugMode}
           mode={mode}

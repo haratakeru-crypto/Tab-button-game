@@ -69,6 +69,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
   const [debugClickCoord, setDebugClickCoord] = useState<{x: number, y: number} | null>(null);
   const [manualWidth, setManualWidth] = useState<number | null>(null);
   const [savedTargetZone, setSavedTargetZone] = useState<{top: number, left: number, width: number, height: number} | null>(null);
+  const [explanationText, setExplanationText] = useState<string>("");
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -78,6 +79,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
     setDebugClickCoord(null);
     setManualWidth(null);
     setSavedTargetZone(null);
+    setExplanationText(question.explanationText || "");
     
     const updateImageSize = () => {
       if (imageRef.current) {
@@ -301,6 +303,32 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
     }
   };
 
+  const saveExplanationText = async () => {
+    try {
+      const apiEndpoint = mode === "button" ? "/api/button-questions" : "/api/questions";
+      const response = await fetch(apiEndpoint, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          questionId: question.id,
+          explanationText: explanationText,
+        }),
+      });
+
+      if (response.ok) {
+        alert("解説テキストを保存しました！");
+      } else {
+        const error = await response.json();
+        alert(`エラー: ${error.error || "保存に失敗しました"}`);
+      }
+    } catch (error) {
+      console.error("保存エラー:", error);
+      alert("保存に失敗しました");
+    }
+  };
+
   const tabName = extractTabName(question.questionText);
   const autoWidth = tabName ? calculateWidthFromTabName(tabName) : 6;
 
@@ -487,6 +515,81 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
                 </div>
               </div>
             )}
+            
+            {/* 解説セクション */}
+            <div className="mt-4 pt-4 border-t border-yellow-300 dark:border-yellow-700">
+              <h4 className="text-sm font-semibold mb-2 text-yellow-800 dark:text-yellow-200">解説編集</h4>
+              
+              {/* 解説画像（複数対応・マーカー付き） */}
+              {question.explanationImages && question.explanationImages.length > 0 ? (
+                <div className="mb-3">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">解説画像:</p>
+                  <div className="flex gap-4 flex-wrap">
+                    {question.explanationImages.map((img: { path: string; label: string; markers?: { top: number; left: number; size?: number }[] }, index: number) => (
+                      <div key={index} className="flex flex-col items-center">
+                        <p className="text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">{img.label}</p>
+                        <div className="relative">
+                          <img
+                            src={img.path}
+                            alt={img.label}
+                            className="max-w-[200px] h-auto rounded border border-gray-300 dark:border-gray-600"
+                          />
+                          {/* マーカー表示 */}
+                          {img.markers && img.markers.map((marker, mIndex) => (
+                            <div
+                              key={mIndex}
+                              className="absolute pointer-events-none"
+                              style={{
+                                top: `${marker.top}%`,
+                                left: `${marker.left}%`,
+                                transform: 'translate(-50%, -50%)',
+                              }}
+                            >
+                              <div 
+                                className="animate-pulse"
+                                style={{
+                                  width: `${marker.size || 32}px`,
+                                  height: `${marker.size || 32}px`,
+                                  border: '3px solid #ef4444',
+                                  backgroundColor: 'transparent',
+                                }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : question.explanationImagePath && (
+                <div className="mb-3">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">解説画像:</p>
+                  <img
+                    src={question.explanationImagePath}
+                    alt="解説画像"
+                    className="max-w-full h-auto rounded border border-gray-300 dark:border-gray-600"
+                  />
+                </div>
+              )}
+              
+              {/* 解説テキスト入力 */}
+              <div className="mb-2">
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">解説テキスト:</p>
+                <textarea
+                  value={explanationText}
+                  onChange={(e) => setExplanationText(e.target.value)}
+                  className="w-full min-h-[100px] p-2 border rounded text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600"
+                  placeholder="解説テキストを入力してください"
+                />
+              </div>
+              
+              <button
+                onClick={saveExplanationText}
+                className="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded"
+              >
+                解説テキストを保存
+              </button>
+            </div>
           </div>
         )}
       </div>
