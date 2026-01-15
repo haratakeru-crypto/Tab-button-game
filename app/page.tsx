@@ -313,12 +313,6 @@ export default function Home() {
                   タブ探しゲームへ
                 </button>
               )}
-              <button
-                onClick={goToSubjectSelection}
-                className="px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-              >
-                科目選択に戻る
-              </button>
             </div>
           </div>
         </div>
@@ -384,17 +378,27 @@ export default function Home() {
             >
               ← 前の問題
             </button>
-            <button
-              onClick={handleNextQuestion}
-              disabled={!canGoNext}
-              className={`px-4 py-2 rounded-lg font-semibold transition-colors duration-200 ${
-                canGoNext
-                  ? "bg-gray-500 hover:bg-gray-600 text-white shadow-md hover:shadow-lg"
-                  : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-              }`}
-            >
-              次の問題 →
-            </button>
+            {/* 最後の問題で回答済みの場合は「スコア画面へ」ボタンを表示 */}
+            {currentQuestionIndex === questions.length - 1 && isCorrect !== null ? (
+              <button
+                onClick={handleNext}
+                className="px-4 py-2 rounded-lg font-semibold transition-colors duration-200 bg-green-500 hover:bg-green-600 text-white shadow-md hover:shadow-lg"
+              >
+                スコア画面へ →
+              </button>
+            ) : (
+              <button
+                onClick={handleNextQuestion}
+                disabled={!canGoNext}
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors duration-200 ${
+                  canGoNext
+                    ? "bg-gray-500 hover:bg-gray-600 text-white shadow-md hover:shadow-lg"
+                    : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                }`}
+              >
+                次の問題 →
+              </button>
+            )}
           </div>
 
           {debugMode && (

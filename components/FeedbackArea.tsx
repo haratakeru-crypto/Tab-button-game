@@ -190,16 +190,13 @@ export default function FeedbackArea({
           </div>
         )}
 
-        {showNext && (
+        {/* 最後の問題以外の場合のみ「次へ」ボタンを表示（最後の問題はヘッダーで対応） */}
+        {showNext && !isLastQuestion && (
           <button
             onClick={onNext}
-            className={`mt-4 px-6 py-3 font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg ${
-              isLastQuestion
-                ? "bg-green-500 hover:bg-green-600 text-white"
-                : "bg-blue-500 hover:bg-blue-600 text-white"
-            }`}
+            className="mt-4 px-6 py-3 font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg bg-blue-500 hover:bg-blue-600 text-white"
           >
-            {isLastQuestion ? "スコア画面へ" : "次へ"}
+            次へ
           </button>
         )}
       </div>
