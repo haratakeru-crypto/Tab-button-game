@@ -68,6 +68,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
   const [debugTargetZone, setDebugTargetZone] = useState<{top: number, left: number, width: number, height: number} | null>(null);
   const [debugClickCoord, setDebugClickCoord] = useState<{x: number, y: number} | null>(null);
   const [manualWidth, setManualWidth] = useState<number | null>(null);
+  const [savedTargetZone, setSavedTargetZone] = useState<{top: number, left: number, width: number, height: number} | null>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -76,6 +77,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
     setDebugTargetZone(null);
     setDebugClickCoord(null);
     setManualWidth(null);
+    setSavedTargetZone(null);
     
     const updateImageSize = () => {
       if (imageRef.current) {
@@ -259,10 +261,11 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
   };
 
   const showCurrentTargetZone = () => {
-    // 現在設定されているターゲットゾーンを表示
-    setDebugTargetZone({ ...question.targetZone });
+    // 保存済みのターゲットゾーンがあればそれを使用、なければ元のデータを使用
+    const targetZone = savedTargetZone || question.targetZone;
+    setDebugTargetZone({ ...targetZone });
     setDebugClickCoord(null);
-    console.log("現在のターゲットゾーンを表示:", question.targetZone);
+    console.log("現在のターゲットゾーンを表示:", targetZone);
   };
 
   const saveTargetZone = async () => {
@@ -286,6 +289,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
 
       if (response.ok) {
         const data = await response.json();
+        setSavedTargetZone({ ...debugTargetZone });
         alert("ターゲットゾーンを保存しました！");
       } else {
         const error = await response.json();
@@ -305,9 +309,6 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-2">問題 {question.id}</h2>
         <p className="text-lg text-gray-700 dark:text-gray-300">{question.questionText}</p>
-        {question.description && (
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">{question.description}</p>
-        )}
       </div>
 
       <div className="relative w-full" onClick={handleImageClick}>
@@ -409,7 +410,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
                     <div className="mt-1 flex items-center gap-2">
                       <input
                         type="range"
-                        min="3"
+                        min="1.5"
                         max="30"
                         step="0.1"
                         value={debugTargetZone.width}
@@ -418,7 +419,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
                       />
                       <input
                         type="number"
-                        min="3"
+                        min="1.5"
                         max="30"
                         step="0.1"
                         value={debugTargetZone.width}
