@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "appType": "Excel",
+    "tabName": "ホーム",
+    "questionText": "ホームタブを探してください",
+    "imagePath": "/Excel画像/Excel画面.png",
+    "targetZone": {
+      "top": 0,
+      "left": 5,
+      "width": 5,
+      "height": 5
+    },
+    "description": "ホームタブをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "ホームタブには、フォントや配置、数値の書式設定など、よく使う機能があります。"
+  },
+  {
+    "id": 2,
+    "appType": "Excel",
+    "tabName": "挿入",
+    "questionText": "挿入タブを探してください",
+    "imagePath": "/Excel画像/Excel画面.png",
+    "targetZone": {
+      "top": 0,
+      "left": 10,
+      "width": 5,
+      "height": 5
+    },
+    "description": "挿入タブをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "挿入タブには、グラフ、テーブル、図形、画像などを挿入する機能があります。"
+  },
+  {
+    "id": 3,
+    "appType": "Excel",
+    "tabName": "ページレイアウト",
+    "questionText": "ページレイアウトタブを探してください",
+    "imagePath": "/Excel画像/Excel画面.png",
+    "targetZone": {
+      "top": 0,
+      "left": 15,
+      "width": 8,
+      "height": 5
+    },
+    "description": "ページレイアウトタブをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "ページレイアウトタブには、印刷設定、余白、用紙サイズなどの設定があります。"
+  },
+  {
+    "id": 4,
+    "appType": "Excel",
+    "tabName": "数式",
+    "questionText": "数式タブを探してください",
+    "imagePath": "/Excel画像/Excel画面.png",
+    "targetZone": {
+      "top": 0,
+      "left": 23,
+      "width": 5,
+      "height": 5
+    },
+    "description": "数式タブをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "数式タブには、関数の挿入、名前の管理、数式の検証などの機能があります。"
+  },
+  {
+    "id": 5,
+    "appType": "Excel",
+    "tabName": "データ",
+    "questionText": "データタブを探してください",
+    "imagePath": "/Excel画像/Excel画面.png",
+    "targetZone": {
+      "top": 0,
+      "left": 28,
+      "width": 5,
+      "height": 5
+    },
+    "description": "データタブをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "データタブには、並べ替え、フィルター、データの取得などの機能があります。"
+  },
+  {
+    "id": 6,
+    "appType": "Excel",
+    "tabName": "校閲",
+    "questionText": "校閲タブを探してください",
+    "imagePath": "/Excel画像/Excel画面.png",
+    "targetZone": {
+      "top": 0,
+      "left": 33,
+      "width": 5,
+      "height": 5
+    },
+    "description": "校閲タブをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "校閲タブには、スペルチェック、コメント、シートの保護などの機能があります。"
+  },
+  {
+    "id": 7,
+    "appType": "Excel",
+    "tabName": "表示",
+    "questionText": "表示タブを探してください",
+    "imagePath": "/Excel画像/Excel画面.png",
+    "targetZone": {
+      "top": 0,
+      "left": 38,
+      "width": 5,
+      "height": 5
+    },
+    "description": "表示タブをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "表示タブには、表示モードの切り替え、ウィンドウの整列、ズームなどの機能があります。"
+  }
+]

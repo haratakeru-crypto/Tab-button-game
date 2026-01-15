@@ -4,74 +4,111 @@
 
 開発サーバーで動作するローカル環境用URLです。
 
-### タブ探しゲーム
-
-#### 通常モード
+### 科目選択画面
 
 ```
 http://localhost:3000/
 ```
 
 **説明:**
-- タブ探しゲームの通常モードで動作します
-- ターゲットゾーンに正しくクリックすると正解、それ以外は不正解と判定されます
-- 正解・不正解のフィードバックが表示されます
+- Word、Excel、PowerPointから科目を選択できます
+- 選択後、各科目のタブ探しゲームに遷移します
 
-#### デバッグモード
+---
+
+### Word
+
+#### タブ探しゲーム（通常モード）
 
 ```
-http://localhost:3000/?debug=true
+http://localhost:3000/?app=word
 ```
 
-**説明:**
-- タブ探しゲームのデバッグモードが有効になります
-- 画像をクリックすると、クリック座標とターゲットゾーンが表示されます
-- ターゲットゾーンの位置（top, left）とサイズ（width, height）を調整できます
-- 「修正」ボタンをクリックすると、調整したターゲットゾーンが `questions.json` に保存されます
+#### タブ探しゲーム（デバッグモード）
 
-**デバッグモードの機能:**
+```
+http://localhost:3000/?app=word&debug=true
+```
+
+#### ボタン探しゲーム（通常モード）
+
+```
+http://localhost:3000/?app=word&mode=button
+```
+
+#### ボタン探しゲーム（デバッグモード）
+
+```
+http://localhost:3000/?app=word&mode=button&debug=true
+```
+
+---
+
+### Excel
+
+#### タブ探しゲーム（通常モード）
+
+```
+http://localhost:3000/?app=excel
+```
+
+#### タブ探しゲーム（デバッグモード）
+
+```
+http://localhost:3000/?app=excel&debug=true
+```
+
+#### ボタン探しゲーム（通常モード）
+
+```
+http://localhost:3000/?app=excel&mode=button
+```
+
+#### ボタン探しゲーム（デバッグモード）
+
+```
+http://localhost:3000/?app=excel&mode=button&debug=true
+```
+
+---
+
+### PowerPoint
+
+#### タブ探しゲーム（通常モード）
+
+```
+http://localhost:3000/?app=powerpoint
+```
+
+#### タブ探しゲーム（デバッグモード）
+
+```
+http://localhost:3000/?app=powerpoint&debug=true
+```
+
+#### ボタン探しゲーム（通常モード）
+
+```
+http://localhost:3000/?app=powerpoint&mode=button
+```
+
+#### ボタン探しゲーム（デバッグモード）
+
+```
+http://localhost:3000/?app=powerpoint&mode=button&debug=true
+```
+
+---
+
+## デバッグモードの機能
+
 - クリック座標の表示（x, yのパーセンテージ）
 - ターゲットゾーンの可視化（青色の枠）
 - 位置調整（top, leftの数値入力）
 - サイズ調整（width, heightのスライダーと数値入力）
 - ターゲットゾーンのJSON形式でのコピー
 - ターゲットゾーンの保存（修正ボタン）
-
-### ボタン探しゲーム
-
-#### 通常モード
-
-```
-http://localhost:3000/?mode=button
-```
-
-**説明:**
-- ボタン探しゲームの通常モードで動作します
-- タブ内の特定のボタンを探すゲームです
-- ターゲットゾーンに正しくクリックすると正解、それ以外は不正解と判定されます
-- 正解・不正解のフィードバックと解説が表示されます
-
-#### デバッグモード
-
-```
-http://localhost:3000/?mode=button&debug=true
-```
-
-**説明:**
-- ボタン探しゲームのデバッグモードが有効になります
-- 画像をクリックすると、クリック座標とターゲットゾーンが表示されます
-- ターゲットゾーンの位置（top, left）とサイズ（width, height）を調整できます
-- 「修正」ボタンをクリックすると、調整したターゲットゾーンが `button-questions.json` に保存されます
-- 解説文を編集・保存できます
-
-**デバッグモードの機能:**
-- クリック座標の表示（x, yのパーセンテージ）
-- ターゲットゾーンの可視化（青色の枠）
-- 位置調整（top, leftの数値入力）
-- サイズ調整（width, heightのスライダーと数値入力）
-- ターゲットゾーンのJSON形式でのコピー
-- ターゲットゾーンの保存（修正ボタン）
-- 解説文の編集・保存
+- 解説文の編集・保存（ボタン探しゲームのみ）
 
 ---
 
@@ -79,21 +116,62 @@ http://localhost:3000/?mode=button&debug=true
 
 Netlifyにデプロイされた一般公開用URLです。
 
-### 通常モード
+### 科目選択画面
 
 ```
 https://keen-toffee-d3e027.netlify.app/
 ```
 
-### デバッグモード
+---
+
+### Word
+
+#### タブ探しゲーム
 
 ```
-https://keen-toffee-d3e027.netlify.app/?debug=true
+https://keen-toffee-d3e027.netlify.app/?app=word
+```
+
+#### ボタン探しゲーム
+
+```
+https://keen-toffee-d3e027.netlify.app/?app=word&mode=button
+```
+
+---
+
+### Excel
+
+#### タブ探しゲーム
+
+```
+https://keen-toffee-d3e027.netlify.app/?app=excel
+```
+
+#### ボタン探しゲーム
+
+```
+https://keen-toffee-d3e027.netlify.app/?app=excel&mode=button
+```
+
+---
+
+### PowerPoint
+
+#### タブ探しゲーム
+
+```
+https://keen-toffee-d3e027.netlify.app/?app=powerpoint
+```
+
+#### ボタン探しゲーム
+
+```
+https://keen-toffee-d3e027.netlify.app/?app=powerpoint&mode=button
 ```
 
 **説明:**
 - インターネット上で誰でもアクセス可能です
-- 通常モードとデバッグモードの両方に対応しています
 - デバッグモードでのターゲットゾーン修正機能は本番環境では無効化されています
 
 ---

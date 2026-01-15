@@ -3,11 +3,23 @@
 import { useEffect, useMemo, useState } from "react";
 import GameArea from "@/components/GameArea";
 import FeedbackArea from "@/components/FeedbackArea";
-import { Question } from "@/types/question";
-import questionsData from "@/data/questions.json";
-import buttonQuestionsData from "@/data/button-questions.json";
+import SubjectSelection from "@/components/SubjectSelection";
+import { AppType, Question } from "@/types/question";
+
+// Word用データ（静的インポート）
+import wordQuestionsData from "@/data/questions.json";
+import wordButtonQuestionsData from "@/data/button-questions.json";
+
+// Excel用データ（静的インポート）
+import excelQuestionsData from "@/data/excel-questions.json";
+import excelButtonQuestionsData from "@/data/excel-button-questions.json";
+
+// PowerPoint用データ（静的インポート）
+import powerpointQuestionsData from "@/data/powerpoint-questions.json";
+import powerpointButtonQuestionsData from "@/data/powerpoint-button-questions.json";
 
 export default function Home() {
+  const [appType, setAppType] = useState<AppType | null>(null);
   const [mode, setMode] = useState<"tab" | "button">("tab");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -15,49 +27,108 @@ export default function Home() {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [debugMode, setDebugMode] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  // URLパラメータを読み取る関数
+  const readUrlParams = () => {
     const params = new URLSearchParams(window.location.search);
     setDebugMode(params.get("debug") === "true");
     setMode(params.get("mode") === "button" ? "button" : "tab");
+
+    const appParam = params.get("app")?.toLowerCase();
+    if (appParam === "word") {
+      setAppType("Word");
+    } else if (appParam === "excel") {
+      setAppType("Excel");
+    } else if (appParam === "powerpoint") {
+      setAppType("PowerPoint");
+    } else {
+      setAppType(null);
+    }
+  };
+
+  // 初期読み込みとブラウザの戻る/進むボタン対応
+  useEffect(() => {
+    readUrlParams();
+    setLoading(false);
+
+    // ブラウザの戻る/進むボタンに対応
+    const handlePopState = () => {
+      readUrlParams();
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  // 科目選択時の処理（ページリロードなしで状態を更新）
+  const handleSelectApp = (selectedApp: AppType) => {
+    setAppType(selectedApp);
+    // URLも更新（ページリロードなし）
+    const url = new URL(window.location.href);
+    url.searchParams.set("app", selectedApp.toLowerCase());
+    window.history.pushState({}, "", url.toString());
+  };
+
+  // 問題データを読み込む
   useEffect(() => {
+    if (!appType) return;
+
     const loadQuestions = async () => {
       setLoading(true);
       try {
+        let apiEndpoint = "";
+        let staticData: Question[] = [];
+
+        // APIエンドポイントと静的データを科目ごとに設定
+        if (appType === "Word") {
+          apiEndpoint = mode === "button" ? "/api/button-questions" : "/api/questions";
+          staticData = mode === "button" 
+            ? (wordButtonQuestionsData as Question[])
+            : (wordQuestionsData as Question[]);
+        } else if (appType === "Excel") {
+          apiEndpoint = mode === "button" ? "/api/excel-button-questions" : "/api/excel-questions";
+          staticData = mode === "button"
+            ? (excelButtonQuestionsData as Question[])
+            : (excelQuestionsData as Question[]);
+        } else if (appType === "PowerPoint") {
+          apiEndpoint = mode === "button" ? "/api/powerpoint-button-questions" : "/api/powerpoint-questions";
+          staticData = mode === "button"
+            ? (powerpointButtonQuestionsData as Question[])
+            : (powerpointQuestionsData as Question[]);
+        }
+
         if (mode === "button") {
           // ボタンモードの場合はAPIから最新データを取得
-          const response = await fetch("/api/button-questions");
-          if (response.ok) {
-            const data = await response.json();
-            setQuestions(data.questions.map((q: Question) => ({ ...q })));
-          } else {
-            // APIエラーの場合はフォールバックとして静的データを使用
-            console.error("APIエラー:", response.statusText);
-            setQuestions((buttonQuestionsData as Question[]).map((q) => ({ ...q })));
+          try {
+            const response = await fetch(apiEndpoint);
+            if (response.ok) {
+              const data = await response.json();
+              setQuestions(data.questions.map((q: Question) => ({ ...q })));
+            } else {
+              console.error("APIエラー:", response.statusText);
+              setQuestions(staticData.map((q) => ({ ...q })));
+            }
+          } catch {
+            setQuestions(staticData.map((q) => ({ ...q })));
           }
         } else {
           // タブモードの場合は静的データを使用
-          setQuestions((questionsData as Question[]).map((q) => ({ ...q })));
+          setQuestions(staticData.map((q) => ({ ...q })));
         }
+
         setCurrentQuestionIndex(0);
         setScore({ correct: 0, total: 0 });
         setIsCorrect(null);
         setGameCompleted(false);
       } catch (error) {
         console.error("データ読み込みエラー:", error);
-        // エラー時はフォールバックとして静的データを使用
-        const dataset = mode === "button" ? (buttonQuestionsData as Question[]) : (questionsData as Question[]);
-        setQuestions(dataset.map((q) => ({ ...q })));
       } finally {
         setLoading(false);
       }
     };
 
     loadQuestions();
-  }, [mode]);
+  }, [appType, mode]);
 
   const currentQuestion = useMemo(() => questions[currentQuestionIndex], [questions, currentQuestionIndex]);
   const canGoPrevious = currentQuestionIndex > 0;
@@ -109,18 +180,52 @@ export default function Home() {
   };
 
   const goToButtonMode = () => {
+    setMode("button");
+    // URLも更新（ページリロードなし）
     const url = new URL(window.location.href);
     url.searchParams.set("mode", "button");
-    window.location.href = url.toString();
+    window.history.pushState({}, "", url.toString());
   };
 
   const goToTabMode = () => {
+    setMode("tab");
+    // URLも更新（ページリロードなし）
     const url = new URL(window.location.href);
     url.searchParams.delete("mode");
-    window.location.href = url.toString();
+    window.history.pushState({}, "", url.toString());
   };
 
-  if (loading || !currentQuestion) {
+  const goToSubjectSelection = () => {
+    setAppType(null);
+    setMode("tab");
+    setQuestions([]);
+    setCurrentQuestionIndex(0);
+    setScore({ correct: 0, total: 0 });
+    setIsCorrect(null);
+    setGameCompleted(false);
+    // URLも更新（ページリロードなし）
+    const url = new URL(window.location.href);
+    url.searchParams.delete("app");
+    url.searchParams.delete("mode");
+    window.history.pushState({}, "", url.toString());
+  };
+
+  // ローディング中
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
+        <p className="text-gray-700 dark:text-gray-200">読み込み中...</p>
+      </div>
+    );
+  }
+
+  // 科目未選択の場合は科目選択画面を表示
+  if (!appType) {
+    return <SubjectSelection onSelect={handleSelectApp} />;
+  }
+
+  // 問題データ読み込み中
+  if (!currentQuestion) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
         <p className="text-gray-700 dark:text-gray-200">問題を読み込んでいます...</p>
@@ -128,11 +233,13 @@ export default function Home() {
     );
   }
 
+  // ゲーム完了画面
   if (gameCompleted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
         <div className="max-w-2xl w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 text-center">
           <h1 className="text-4xl font-bold mb-6 text-gray-800 dark:text-white">ゲーム完了！</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">{appType} - {mode === "button" ? "ボタン探し" : "タブ探し"}</p>
           <div className="mb-8">
             <p className="text-2xl mb-4 text-gray-700 dark:text-gray-300">
               スコア: {score.correct} / {score.total}
@@ -148,11 +255,26 @@ export default function Home() {
             >
               もう一度プレイ
             </button>
+            {mode === "tab" ? (
+              <button
+                onClick={goToButtonMode}
+                className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                ボタン探しゲームへ
+              </button>
+            ) : (
+              <button
+                onClick={goToTabMode}
+                className="px-8 py-3 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                タブ探しゲームへ
+              </button>
+            )}
             <button
-              onClick={goToButtonMode}
-              className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              onClick={goToSubjectSelection}
+              className="px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
             >
-              ボタン探しゲームにいく
+              科目選択に戻る
             </button>
           </div>
         </div>
@@ -160,13 +282,25 @@ export default function Home() {
     );
   }
 
+  // アプリごとの色設定
+  const appColors = {
+    Word: "text-blue-600 dark:text-blue-400",
+    Excel: "text-green-600 dark:text-green-400",
+    PowerPoint: "text-orange-600 dark:text-orange-400",
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
       <div className="max-w-7xl mx-auto">
         {/* ヘッダー */}
         <header className="mb-8">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Office UI マスター</h1>
+            <div>
+              <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Office UI マスター</h1>
+              <p className={`text-lg font-semibold ${appColors[appType]}`}>
+                {appType} - {mode === "button" ? "ボタン探しゲーム" : "タブ探しゲーム"}
+              </p>
+            </div>
             <div className="text-right">
               <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                 スコア: {score.correct} / {score.total}
@@ -179,6 +313,12 @@ export default function Home() {
 
           {/* 前の問題、次の問題ボタン */}
           <div className="flex gap-2 mb-4">
+            <button
+              onClick={goToSubjectSelection}
+              className="px-4 py-2 bg-gray-400 hover:bg-gray-500 text-white rounded-lg font-semibold transition-colors duration-200 shadow-md hover:shadow-lg"
+            >
+              ← 科目選択
+            </button>
             <button
               onClick={handlePrevious}
               disabled={!canGoPrevious}

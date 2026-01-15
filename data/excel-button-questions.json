@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "appType": "Excel",
+    "tabName": "ホーム",
+    "questionText": "ホームタブの中から、セルの書式設定ができるボタンを探してください",
+    "imagePath": "/Excel画像/ホームタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 50,
+      "width": 10,
+      "height": 60
+    },
+    "description": "セルの書式設定ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "セルの書式設定では、数値の表示形式、フォント、罫線、塗りつぶしなどを設定できます。"
+  },
+  {
+    "id": 2,
+    "appType": "Excel",
+    "tabName": "挿入",
+    "questionText": "挿入タブの中から、グラフを挿入できるボタンを探してください",
+    "imagePath": "/Excel画像/挿入タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "グラフ挿入ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "グラフを挿入して、データを視覚的に表現できます。"
+  },
+  {
+    "id": 3,
+    "appType": "Excel",
+    "tabName": "数式",
+    "questionText": "数式タブの中から、関数を挿入できるボタンを探してください",
+    "imagePath": "/Excel画像/数式タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 5,
+      "width": 10,
+      "height": 60
+    },
+    "description": "関数の挿入ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "関数の挿入ダイアログを開いて、様々な関数を選択できます。"
+  },
+  {
+    "id": 4,
+    "appType": "Excel",
+    "tabName": "データ",
+    "questionText": "データタブの中から、フィルターを設定できるボタンを探してください",
+    "imagePath": "/Excel画像/データタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "フィルターボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "フィルターを使って、特定の条件に合うデータだけを表示できます。"
+  },
+  {
+    "id": 5,
+    "appType": "Excel",
+    "tabName": "ページレイアウト",
+    "questionText": "ページレイアウトタブの中から、印刷範囲を設定できるボタンを探してください",
+    "imagePath": "/Excel画像/ページレイアウトタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 20,
+      "width": 10,
+      "height": 60
+    },
+    "description": "印刷範囲ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "印刷範囲を設定して、必要な部分だけを印刷できます。"
+  }
+]

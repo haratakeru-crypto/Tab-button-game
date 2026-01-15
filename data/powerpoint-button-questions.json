@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "appType": "PowerPoint",
+    "tabName": "ホーム",
+    "questionText": "ホームタブの中から、新しいスライドを追加できるボタンを探してください",
+    "imagePath": "/PowerPoint画像/ホームタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 5,
+      "width": 10,
+      "height": 60
+    },
+    "description": "新しいスライドボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "新しいスライドボタンでスライドを追加できます。レイアウトも選択できます。"
+  },
+  {
+    "id": 2,
+    "appType": "PowerPoint",
+    "tabName": "挿入",
+    "questionText": "挿入タブの中から、画像を挿入できるボタンを探してください",
+    "imagePath": "/PowerPoint画像/挿入タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 20,
+      "width": 10,
+      "height": 60
+    },
+    "description": "画像挿入ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "画像ボタンで写真やイラストをスライドに挿入できます。"
+  },
+  {
+    "id": 3,
+    "appType": "PowerPoint",
+    "tabName": "デザイン",
+    "questionText": "デザインタブの中から、テーマを変更できる部分を探してください",
+    "imagePath": "/PowerPoint画像/デザインタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 10,
+      "width": 30,
+      "height": 60
+    },
+    "description": "テーマギャラリーをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "テーマを変更すると、スライド全体のデザインが一括で変わります。"
+  },
+  {
+    "id": 4,
+    "appType": "PowerPoint",
+    "tabName": "アニメーション",
+    "questionText": "アニメーションタブの中から、アニメーション効果を追加できる部分を探してください",
+    "imagePath": "/PowerPoint画像/アニメーションタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 10,
+      "width": 20,
+      "height": 60
+    },
+    "description": "アニメーションギャラリーをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "アニメーションを追加すると、オブジェクトに動きをつけられます。"
+  },
+  {
+    "id": 5,
+    "appType": "PowerPoint",
+    "tabName": "スライドショー",
+    "questionText": "スライドショータブの中から、最初からスライドショーを開始できるボタンを探してください",
+    "imagePath": "/PowerPoint画像/スライドショータブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 5,
+      "width": 10,
+      "height": 60
+    },
+    "description": "最初からボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": "最初からボタンで、1枚目のスライドからプレゼンテーションを開始できます。"
+  }
+]
