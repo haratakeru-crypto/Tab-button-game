@@ -168,6 +168,17 @@ export default function Home() {
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
+      // 未回答で次の問題に移動した場合は不正解としてカウント
+      if (isCorrect === null) {
+        setScore((prev) => ({ ...prev, total: prev.total + 1 }));
+        // 不正解の問題IDを記録（重複なし）
+        setWrongQuestionIds((prev) => {
+          if (!prev.includes(currentQuestion.id)) {
+            return [...prev, currentQuestion.id];
+          }
+          return prev;
+        });
+      }
       setCurrentQuestionIndex((prev) => prev + 1);
       setIsCorrect(null);
       setGameCompleted(false);
