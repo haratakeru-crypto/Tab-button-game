@@ -25,10 +25,7 @@ export default function FeedbackArea({
   mode = "tab",
   onExplanationSaved,
 }: FeedbackAreaProps) {
-  if (isCorrect === null) {
-    return null;
-  }
-
+  // Hooksは常にトップレベルで呼ぶ必要がある（早期リターンの前）
   const canEditExplanation = debugMode && mode === "button" && questionId !== undefined;
   const [draftExplanation, setDraftExplanation] = useState(explanationText ?? "");
 
@@ -36,6 +33,11 @@ export default function FeedbackArea({
   useEffect(() => {
     setDraftExplanation(explanationText ?? "");
   }, [explanationText]);
+
+  // 早期リターンはHooksの後で行う
+  if (isCorrect === null) {
+    return null;
+  }
 
   const handleSaveExplanation = async (newText: string) => {
     if (!canEditExplanation || questionId === undefined) return;

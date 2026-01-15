@@ -15,6 +15,7 @@ export default function Home() {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [debugMode, setDebugMode] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -23,12 +24,39 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const dataset = mode === "button" ? (buttonQuestionsData as Question[]) : (questionsData as Question[]);
-    setQuestions(dataset.map((q) => ({ ...q })));
-    setCurrentQuestionIndex(0);
-    setScore({ correct: 0, total: 0 });
-    setIsCorrect(null);
-    setGameCompleted(false);
+    const loadQuestions = async () => {
+      setLoading(true);
+      try {
+        if (mode === "button") {
+          // ボタンモードの場合はAPIから最新データを取得
+          const response = await fetch("/api/button-questions");
+          if (response.ok) {
+            const data = await response.json();
+            setQuestions(data.questions.map((q: Question) => ({ ...q })));
+          } else {
+            // APIエラーの場合はフォールバックとして静的データを使用
+            console.error("APIエラー:", response.statusText);
+            setQuestions((buttonQuestionsData as Question[]).map((q) => ({ ...q })));
+          }
+        } else {
+          // タブモードの場合は静的データを使用
+          setQuestions((questionsData as Question[]).map((q) => ({ ...q })));
+        }
+        setCurrentQuestionIndex(0);
+        setScore({ correct: 0, total: 0 });
+        setIsCorrect(null);
+        setGameCompleted(false);
+      } catch (error) {
+        console.error("データ読み込みエラー:", error);
+        // エラー時はフォールバックとして静的データを使用
+        const dataset = mode === "button" ? (buttonQuestionsData as Question[]) : (questionsData as Question[]);
+        setQuestions(dataset.map((q) => ({ ...q })));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadQuestions();
   }, [mode]);
 
   const currentQuestion = useMemo(() => questions[currentQuestionIndex], [questions, currentQuestionIndex]);
@@ -92,7 +120,7 @@ export default function Home() {
     window.location.href = url.toString();
   };
 
-  if (!currentQuestion) {
+  if (loading || !currentQuestion) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
         <p className="text-gray-700 dark:text-gray-200">問題を読み込んでいます...</p>

@@ -14,12 +14,12 @@ interface GameAreaProps {
 // 問題テキストからタブ名を抽出する関数
 const extractTabName = (questionText: string): string => {
   // 「〜タブを探してください」からタブ名を抽出
-  const match = questionText.match(/^(.+?)タブを探してください/);
+  const match = questionText.match(/(.+?)タブを探してください/);
   if (match) {
     return match[1];
   }
   // 「〜タブを探してください」以外のパターンにも対応
-  const match2 = questionText.match(/^(.+?)タブ/);
+  const match2 = questionText.match(/(.+?)タブ/);
   if (match2) {
     return match2[1];
   }
@@ -100,25 +100,46 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
     const rect = imageRef.current.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
+    
+    // rectのサイズを直接使用（実際の表示サイズ）
+    const actualWidth = rect.width;
+    const actualHeight = rect.height;
 
     // 画像サイズが0の場合は座標計算をスキップ
-    if (imageSize.width === 0 || imageSize.height === 0) {
+    if (actualWidth === 0 || actualHeight === 0) {
       if (debugMode) {
         console.log("画像サイズがまだ読み込まれていません");
       }
       return;
     }
 
-    const percentX = (clickX / imageSize.width) * 100;
-    const percentY = (clickY / imageSize.height) * 100;
+    const percentX = (clickX / actualWidth) * 100;
+    const percentY = (clickY / actualHeight) * 100;
 
     const isCorrect = isClickInTargetZone(
       clickX,
       clickY,
       question.targetZone,
-      imageSize.width,
-      imageSize.height
+      actualWidth,
+      actualHeight
     );
+
+    // 通常モードでも判定の詳細をログに出力（デバッグ用）
+    console.log("=== クリック判定 ===");
+    console.log(`問題ID: ${question.id}`);
+    console.log(`クリック座標（パーセント）: x=${percentX.toFixed(2)}%, y=${percentY.toFixed(2)}%`);
+    console.log(`ターゲットゾーン:`, question.targetZone);
+    console.log(`判定結果: ${isCorrect ? "✅ 正解" : "❌ 不正解"}`);
+    
+    // ターゲットゾーンの範囲を計算
+    const targetLeft = question.targetZone.left;
+    const targetRight = question.targetZone.left + question.targetZone.width;
+    const targetTop = question.targetZone.top;
+    const targetBottom = question.targetZone.top + question.targetZone.height;
+    
+    console.log(`ターゲットゾーン範囲: x=[${targetLeft.toFixed(2)}%, ${targetRight.toFixed(2)}%], y=[${targetTop.toFixed(2)}%, ${targetBottom.toFixed(2)}%]`);
+    console.log(`X範囲チェック: ${percentX.toFixed(2)} >= ${targetLeft.toFixed(2)} && ${percentX.toFixed(2)} <= ${targetRight.toFixed(2)} = ${percentX >= targetLeft && percentX <= targetRight}`);
+    console.log(`Y範囲チェック: ${percentY.toFixed(2)} >= ${targetTop.toFixed(2)} && ${percentY.toFixed(2)} <= ${targetBottom.toFixed(2)} = ${percentY >= targetTop && percentY <= targetBottom}`);
 
     if (debugMode) {
       // 新しいクリック時は、手動設定された幅をリセットして自動計算を使用
@@ -237,6 +258,13 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
     }
   };
 
+  const showCurrentTargetZone = () => {
+    // 現在設定されているターゲットゾーンを表示
+    setDebugTargetZone({ ...question.targetZone });
+    setDebugClickCoord(null);
+    console.log("現在のターゲットゾーンを表示:", question.targetZone);
+  };
+
   const saveTargetZone = async () => {
     if (!debugTargetZone) {
       alert("ターゲットゾーンが設定されていません");
@@ -258,9 +286,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
 
       if (response.ok) {
         const data = await response.json();
-        alert("ターゲットゾーンを保存しました！ページを再読み込みしてください。");
-        // ページを再読み込みして更新を反映
-        window.location.reload();
+        alert("ターゲットゾーンを保存しました！");
       } else {
         const error = await response.json();
         alert(`エラー: ${error.error || "保存に失敗しました"}`);
@@ -285,12 +311,12 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
       </div>
 
       <div className="relative w-full" onClick={handleImageClick}>
-        <div className="relative w-full" style={{ position: "relative" }}>
+        <div className="relative inline-block" style={{ position: "relative" }}>
           <img
             ref={imageRef}
             src={question.imagePath}
             alt="Word画面"
-            className="max-w-full h-auto cursor-crosshair select-none"
+            className="block max-w-full h-auto cursor-crosshair select-none"
             draggable={false}
             onLoad={() => {
               // 画像読み込み完了時にサイズを更新
@@ -325,16 +351,26 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
             <div className="text-sm font-semibold mb-2 text-yellow-800 dark:text-yellow-200">
               デバッグモード: クリック座標とターゲットゾーンが表示されます
             </div>
+            <div className="mb-3">
+              <button
+                onClick={showCurrentTargetZone}
+                className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                現在のターゲットゾーンを表示
+              </button>
+            </div>
             {tabName && (
               <div className="mb-2 text-xs text-gray-600 dark:text-gray-400">
                 検出されたタブ名: <strong>{tabName}</strong> ({tabName.length}文字) - 自動計算幅: {autoWidth.toFixed(1)}%
               </div>
             )}
-            {debugClickCoord && debugTargetZone && (
+            {debugTargetZone && (
               <div className="space-y-3 text-xs text-gray-700 dark:text-gray-300">
-                <div>
-                  <strong>クリック座標:</strong> x={debugClickCoord.x.toFixed(2)}%, y={debugClickCoord.y.toFixed(2)}%
-                </div>
+                {debugClickCoord && (
+                  <div>
+                    <strong>クリック座標:</strong> x={debugClickCoord.x.toFixed(2)}%, y={debugClickCoord.y.toFixed(2)}%
+                  </div>
+                )}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <strong>位置 (top):</strong>

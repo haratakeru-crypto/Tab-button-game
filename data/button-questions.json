@@ -6,10 +6,10 @@
     "questionText": "レイアウトタブの中から、印刷の向きを変更できるボタンを探してください",
     "imagePath": "/Word画像/1-3レイアウト.png",
     "targetZone": {
-      "top": 3.3,
-      "left": 9.2,
-      "width": 4,
-      "height": 75.5
+      "top": 3.5,
+      "left": 29.6,
+      "width": 11.8,
+      "height": 73.9
     },
     "description": "印刷の向きを変更するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説レイアウト印刷の向き.png",
@@ -22,10 +22,10 @@
     "questionText": "レイアウトタブの中から、余白を設定できるボタンを探してください",
     "imagePath": "/Word画像/1-3レイアウト.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 1.9,
+      "left": 17.6,
+      "width": 12.2,
+      "height": 71.4
     },
     "description": "余白を設定するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説レイアウト余白設定後.png",
@@ -38,10 +38,10 @@
     "questionText": "レイアウトタブの中から、用紙のサイズを変更できるボタンを探してください",
     "imagePath": "/Word画像/1-3レイアウト.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 1.6,
+      "left": 41.3,
+      "width": 12.5,
+      "height": 76.2
     },
     "description": "用紙のサイズを変更するボタンをクリックしてください",
     "explanationImagePath": "",
@@ -54,10 +54,10 @@
     "questionText": "デザインタブの中から、透かしを設定できるボタンを探してください",
     "imagePath": "/Word画像/4-5デザイン.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 0.8,
+      "left": 6.8,
+      "width": 29,
+      "height": 74.2
     },
     "description": "透かしを設定するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説デザイン透かし.png",
@@ -70,10 +70,10 @@
     "questionText": "デザインタブの中から、ページ罫線を設定できるボタンを探してください",
     "imagePath": "/Word画像/4-5デザイン.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 0.5,
+      "left": 66.3,
+      "width": 30,
+      "height": 74.4
     },
     "description": "ページ罫線を設定するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説デザイン罫線.png",
@@ -86,10 +86,10 @@
     "questionText": "参考資料タブの中から、目次を作成できるボタンを探してください",
     "imagePath": "/Word画像/6-8参考資料.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 7.1,
+      "left": 1.9,
+      "width": 14.9,
+      "height": 69.6
     },
     "description": "目次を作成するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説参考資料目次.png",
@@ -102,10 +102,10 @@
     "questionText": "参考資料タブの中から、脚注を挿入できるボタンを探してください",
     "imagePath": "/Word画像/6-8参考資料.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 7.7,
+      "left": 51.2,
+      "width": 14.7,
+      "height": 70.5
     },
     "description": "脚注を挿入するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説参考資料脚注.png",
@@ -118,10 +118,10 @@
     "questionText": "ホームタブの中から、文字の色を変更できるボタンを探してください",
     "imagePath": "/Word画像/9-13ホームタブ.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 41.2,
+      "left": 40.2,
+      "width": 6.5,
+      "height": 29.1
     },
     "description": "文字の色を変更するボタンをクリックしてください",
     "explanationImagePath": "",
@@ -134,10 +134,10 @@
     "questionText": "ホームタブの中から、太字を設定できるボタンを探してください",
     "imagePath": "/Word画像/9-13ホームタブ.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 40,
+      "left": 1,
+      "width": 3.7,
+      "height": 29.3
     },
     "description": "太字を設定するボタンをクリックしてください",
     "explanationImagePath": "",
@@ -150,10 +150,10 @@
     "questionText": "ホームタブの中から、斜体を設定できるボタンを探してください",
     "imagePath": "/Word画像/9-13ホームタブ.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 42,
+      "left": 4.9,
+      "width": 3.5,
+      "height": 26.5
     },
     "description": "斜体を設定するボタンをクリックしてください",
     "explanationImagePath": "",
@@ -166,10 +166,10 @@
     "questionText": "ホームタブの中から、文字の大きさを変更できるボタンを探してください",
     "imagePath": "/Word画像/9-13ホームタブ.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 9,
+      "left": 20.9,
+      "width": 9.3,
+      "height": 30
     },
     "description": "文字の大きさを変更するボタンをクリックしてください",
     "explanationImagePath": "",
@@ -182,10 +182,10 @@
     "questionText": "ホームタブの中から、文字の効果と体裁を設定できるボタンを探してください",
     "imagePath": "/Word画像/9-13ホームタブ.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 39.2,
+      "left": 27.3,
+      "width": 5.2,
+      "height": 29.8
     },
     "description": "文字の効果と体裁を設定するボタンをクリックしてください",
     "explanationImagePath": "",
@@ -196,12 +196,12 @@
     "appType": "Word",
     "tabName": "挿入",
     "questionText": "挿入タブの中から、画像を挿入できるボタンを探してください",
-    "imagePath": "/Word画像/9-13ホームタブ.png",
+    "imagePath": "/Word画像/13挿入.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 4.8,
+      "left": 15.4,
+      "width": 11.9,
+      "height": 70.2
     },
     "description": "画像を挿入するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説挿入画像.png",
@@ -214,10 +214,10 @@
     "questionText": "図の形式タブの中から、アート効果を設定できるボタンを探してください",
     "imagePath": "/Word画像/15図の形式.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 4.6,
+      "left": 29.9,
+      "width": 18.3,
+      "height": 72.8
     },
     "description": "アート効果を設定するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説図の形式アート効果.png",
@@ -230,10 +230,10 @@
     "questionText": "校閲タブの中から、変更履歴を記録できるボタンを探してください",
     "imagePath": "/Word画像/16校閲.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 1.8,
+      "left": 1.1,
+      "width": 30,
+      "height": 73.5
     },
     "description": "変更履歴を記録するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説校閲変更履歴編集.png",
@@ -246,10 +246,10 @@
     "questionText": "テーブルレイアウトタブの中から、表を解除できるボタンを探してください",
     "imagePath": "/Word画像/17テーブルレイアウト.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 3.2,
+      "left": 53.8,
+      "width": 25.5,
+      "height": 63.1
     },
     "description": "表を解除するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説テーブルレイアウト表解除.png",
@@ -262,10 +262,10 @@
     "questionText": "テーブルレイアウトタブの中から、表の横幅を自動調整できるボタンを探してください",
     "imagePath": "/Word画像/18テーブルレイアウト2.png",
     "targetZone": {
-      "top": 10,
-      "left": 10,
-      "width": 10,
-      "height": 10
+      "top": 9.1,
+      "left": 0.625,
+      "width": 20.3,
+      "height": 61.9
     },
     "description": "表の横幅を自動調整するボタンをクリックしてください",
     "explanationImagePath": "/Word画像/解説テーブルレイアウト文字の幅に合わせる.png",
