@@ -4,7 +4,7 @@
     "appType": "Word",
     "tabName": "レイアウト",
     "questionText": "レイアウトタブの中から、印刷の向きを変更できるボタンを探してください",
-    "imagePath": "/Word画像/1-3レイアウト.png",
+    "imagePath": "/Word画像/1-3レイアウトタブ.png",
     "targetZone": {
       "top": 3.5,
       "left": 29.6,
@@ -20,7 +20,7 @@
     "appType": "Word",
     "tabName": "レイアウト",
     "questionText": "レイアウトタブの中から、余白を設定できるボタンを探してください",
-    "imagePath": "/Word画像/1-3レイアウト.png",
+    "imagePath": "/Word画像/1-3レイアウトタブ.png",
     "targetZone": {
       "top": 1.9,
       "left": 17.6,
@@ -36,7 +36,7 @@
     "appType": "Word",
     "tabName": "レイアウト",
     "questionText": "レイアウトタブの中から、用紙のサイズを変更できるボタンを探してください",
-    "imagePath": "/Word画像/1-3レイアウト.png",
+    "imagePath": "/Word画像/1-3レイアウトタブ.png",
     "targetZone": {
       "top": 1.6,
       "left": 41.3,
@@ -52,7 +52,7 @@
     "appType": "Word",
     "tabName": "デザイン",
     "questionText": "デザインタブの中から、透かしを設定できるボタンを探してください",
-    "imagePath": "/Word画像/4-5デザイン.png",
+    "imagePath": "/Word画像/4-5デザインタブ.png",
     "targetZone": {
       "top": 0.8,
       "left": 6.8,
@@ -68,7 +68,7 @@
     "appType": "Word",
     "tabName": "デザイン",
     "questionText": "デザインタブの中から、ページ罫線を設定できるボタンを探してください",
-    "imagePath": "/Word画像/4-5デザイン.png",
+    "imagePath": "/Word画像/4-5デザインタブ.png",
     "targetZone": {
       "top": 0.5,
       "left": 66.3,
@@ -84,7 +84,7 @@
     "appType": "Word",
     "tabName": "参考資料",
     "questionText": "参考資料タブの中から、目次を作成できるボタンを探してください",
-    "imagePath": "/Word画像/6-8参考資料.png",
+    "imagePath": "/Word画像/6-8参考資料タブ.png",
     "targetZone": {
       "top": 7.1,
       "left": 1.9,
@@ -100,7 +100,7 @@
     "appType": "Word",
     "tabName": "参考資料",
     "questionText": "参考資料タブの中から、脚注を挿入できるボタンを探してください",
-    "imagePath": "/Word画像/6-8参考資料.png",
+    "imagePath": "/Word画像/6-8参考資料タブ.png",
     "targetZone": {
       "top": 7.7,
       "left": 51.2,
@@ -114,16 +114,16 @@
   {
     "id": 8,
     "appType": "Word",
-    "tabName": "ホーム",
-    "questionText": "ホームタブの中から、文字の色を変更できるボタンを探してください",
-    "imagePath": "/Word画像/9-13ホームタブ.png",
+    "tabName": "参考資料",
+    "questionText": "参考資料タブの中から、引用文献を挿入できるボタンを探してください",
+    "imagePath": "/Word画像/6-8参考資料タブ.png",
     "targetZone": {
-      "top": 41.2,
-      "left": 40.2,
-      "width": 6.5,
-      "height": 29.1
+      "top": 5,
+      "left": 35,
+      "width": 15,
+      "height": 70
     },
-    "description": "文字の色を変更するボタンをクリックしてください",
+    "description": "引用文献を挿入するボタンをクリックしてください",
     "explanationImagePath": "",
     "explanationText": ""
   },
@@ -132,7 +132,7 @@
     "appType": "Word",
     "tabName": "ホーム",
     "questionText": "ホームタブの中から、太字を設定できるボタンを探してください",
-    "imagePath": "/Word画像/9-13ホームタブ.png",
+    "imagePath": "/Word画像/9-12ホームタブ (2).png",
     "targetZone": {
       "top": 40,
       "left": 1,
@@ -148,7 +148,7 @@
     "appType": "Word",
     "tabName": "ホーム",
     "questionText": "ホームタブの中から、斜体を設定できるボタンを探してください",
-    "imagePath": "/Word画像/9-13ホームタブ.png",
+    "imagePath": "/Word画像/9-12ホームタブ (2).png",
     "targetZone": {
       "top": 42,
       "left": 4.9,
@@ -164,7 +164,7 @@
     "appType": "Word",
     "tabName": "ホーム",
     "questionText": "ホームタブの中から、文字の大きさを変更できるボタンを探してください",
-    "imagePath": "/Word画像/9-13ホームタブ.png",
+    "imagePath": "/Word画像/9-12ホームタブ (2).png",
     "targetZone": {
       "top": 9,
       "left": 20.9,
@@ -180,7 +180,7 @@
     "appType": "Word",
     "tabName": "ホーム",
     "questionText": "ホームタブの中から、文字の効果と体裁を設定できるボタンを探してください",
-    "imagePath": "/Word画像/9-13ホームタブ.png",
+    "imagePath": "/Word画像/9-12ホームタブ (2).png",
     "targetZone": {
       "top": 39.2,
       "left": 27.3,
@@ -196,7 +196,7 @@
     "appType": "Word",
     "tabName": "挿入",
     "questionText": "挿入タブの中から、画像を挿入できるボタンを探してください",
-    "imagePath": "/Word画像/13挿入.png",
+    "imagePath": "/Word画像/13挿入タブ.png",
     "targetZone": {
       "top": 4.8,
       "left": 15.4,
@@ -212,7 +212,7 @@
     "appType": "Word",
     "tabName": "図の形式",
     "questionText": "図の形式タブの中から、アート効果を設定できるボタンを探してください",
-    "imagePath": "/Word画像/15図の形式.png",
+    "imagePath": "/Word画像/14図の形式タブ (2).png",
     "targetZone": {
       "top": 4.6,
       "left": 29.9,
@@ -228,7 +228,7 @@
     "appType": "Word",
     "tabName": "校閲",
     "questionText": "校閲タブの中から、変更履歴を記録できるボタンを探してください",
-    "imagePath": "/Word画像/16校閲.png",
+    "imagePath": "/Word画像/15校閲タブ.png",
     "targetZone": {
       "top": 1.8,
       "left": 1.1,
@@ -244,7 +244,7 @@
     "appType": "Word",
     "tabName": "テーブルレイアウト",
     "questionText": "テーブルレイアウトタブの中から、表を解除できるボタンを探してください",
-    "imagePath": "/Word画像/17テーブルレイアウト.png",
+    "imagePath": "/Word画像/16-17テーブルレイアウトタブ (2).png",
     "targetZone": {
       "top": 3.2,
       "left": 53.8,
@@ -260,7 +260,7 @@
     "appType": "Word",
     "tabName": "テーブルレイアウト",
     "questionText": "テーブルレイアウトタブの中から、表の横幅を自動調整できるボタンを探してください",
-    "imagePath": "/Word画像/18テーブルレイアウト2.png",
+    "imagePath": "/Word画像/16-17テーブルレイアウトタブ (2).png",
     "targetZone": {
       "top": 9.1,
       "left": 0.625,
