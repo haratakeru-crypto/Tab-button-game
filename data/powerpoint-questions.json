@@ -6,10 +6,10 @@
     "questionText": "ホームタブを探してください",
     "imagePath": "/PowerPoint画像/PowerPoint画面.png",
     "targetZone": {
-      "top": 0,
-      "left": 5,
-      "width": 5,
-      "height": 5
+      "top": 4.398781654332176,
+      "left": 2.8189829979722356,
+      "width": 3.2,
+      "height": 3.7
     },
     "description": "ホームタブをクリックしてください",
     "explanationImagePath": "",
@@ -22,10 +22,10 @@
     "questionText": "挿入タブを探してください",
     "imagePath": "/PowerPoint画像/PowerPoint画面.png",
     "targetZone": {
-      "top": 0,
-      "left": 10,
-      "width": 5,
-      "height": 5
+      "top": 4.5,
+      "left": 5.4,
+      "width": 2.8,
+      "height": 3.9
     },
     "description": "挿入タブをクリックしてください",
     "explanationImagePath": "",
@@ -38,10 +38,10 @@
     "questionText": "デザインタブを探してください",
     "imagePath": "/PowerPoint画像/PowerPoint画面.png",
     "targetZone": {
-      "top": 0,
-      "left": 15,
-      "width": 5,
-      "height": 5
+      "top": 4.8,
+      "left": 10.176761408720067,
+      "width": 3.6,
+      "height": 3
     },
     "description": "デザインタブをクリックしてください",
     "explanationImagePath": "",
@@ -54,10 +54,10 @@
     "questionText": "画面切り替えタブを探してください",
     "imagePath": "/PowerPoint画像/PowerPoint画面.png",
     "targetZone": {
-      "top": 0,
-      "left": 20,
-      "width": 8,
-      "height": 5
+      "top": 4.5,
+      "left": 13.8,
+      "width": 4.7,
+      "height": 3
     },
     "description": "画面切り替えタブをクリックしてください",
     "explanationImagePath": "",
@@ -70,10 +70,10 @@
     "questionText": "アニメーションタブを探してください",
     "imagePath": "/PowerPoint画像/PowerPoint画面.png",
     "targetZone": {
-      "top": 0,
-      "left": 28,
-      "width": 8,
-      "height": 5
+      "top": 4.7,
+      "left": 18.2,
+      "width": 4.7,
+      "height": 3.2
     },
     "description": "アニメーションタブをクリックしてください",
     "explanationImagePath": "",
@@ -86,10 +86,10 @@
     "questionText": "スライドショータブを探してください",
     "imagePath": "/PowerPoint画像/PowerPoint画面.png",
     "targetZone": {
-      "top": 0,
-      "left": 36,
-      "width": 8,
-      "height": 5
+      "top": 4.5,
+      "left": 22.9,
+      "width": 5,
+      "height": 3.7
     },
     "description": "スライドショータブをクリックしてください",
     "explanationImagePath": "",
@@ -102,10 +102,10 @@
     "questionText": "表示タブを探してください",
     "imagePath": "/PowerPoint画像/PowerPoint画面.png",
     "targetZone": {
-      "top": 0,
-      "left": 44,
-      "width": 5,
-      "height": 5
+      "top": 4.5,
+      "left": 32.4,
+      "width": 3,
+      "height": 3.4
     },
     "description": "表示タブをクリックしてください",
     "explanationImagePath": "",

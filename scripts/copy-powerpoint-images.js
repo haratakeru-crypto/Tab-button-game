@@ -1,0 +1,44 @@
+const fs = require('fs');
+const path = require('path');
+
+const sourceDir = path.join(__dirname, '..', 'PowerPoint画像');
+const destDir = path.join(__dirname, '..', 'public', 'PowerPoint画像');
+
+// ディレクトリが存在しない場合は作成
+if (!fs.existsSync(destDir)) {
+  fs.mkdirSync(destDir, { recursive: true });
+}
+
+// ソースディレクトリが存在しない場合はエラー
+if (!fs.existsSync(sourceDir)) {
+  console.error('ソースディレクトリが見つかりません:', sourceDir);
+  process.exit(1);
+}
+
+// すべてのPNGファイルをコピー
+try {
+  const files = fs.readdirSync(sourceDir);
+  const pngFiles = files.filter(file => file.toLowerCase().endsWith('.png'));
+  
+  if (pngFiles.length === 0) {
+    console.warn('PNGファイルが見つかりませんでした:', sourceDir);
+  } else {
+    let copiedCount = 0;
+    pngFiles.forEach(file => {
+      const sourceFile = path.join(sourceDir, file);
+      const destFile = path.join(destDir, file);
+      
+      try {
+        fs.copyFileSync(sourceFile, destFile);
+        console.log(`✓ コピーしました: ${file}`);
+        copiedCount++;
+      } catch (error) {
+        console.error(`✗ コピー失敗: ${file}`, error.message);
+      }
+    });
+    console.log(`\n合計 ${copiedCount} / ${pngFiles.length} ファイルをコピーしました。`);
+  }
+} catch (error) {
+  console.error('エラーが発生しました:', error.message);
+  process.exit(1);
+}

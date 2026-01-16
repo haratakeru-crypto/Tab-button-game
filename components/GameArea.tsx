@@ -352,7 +352,7 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
           <img
             ref={imageRef}
             src={question.imagePath}
-            alt="Word画面"
+            alt={`${appType}画面`}
             className="block max-w-full h-auto cursor-crosshair select-none"
             draggable={false}
             onLoad={() => {

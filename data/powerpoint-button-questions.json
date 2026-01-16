@@ -2,81 +2,353 @@
   {
     "id": 1,
     "appType": "PowerPoint",
-    "tabName": "ホーム",
-    "questionText": "ホームタブの中から、新しいスライドを追加できるボタンを探してください",
-    "imagePath": "/PowerPoint画像/ホームタブ.png",
+    "tabName": "デザイン",
+    "questionText": "スライドのサイズボタンを探してください",
+    "imagePath": "/PowerPoint画像/1-2デザインタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 5,
-      "width": 10,
-      "height": 60
+      "top": 28.7,
+      "left": 87.9,
+      "width": 3.4,
+      "height": 55.1
     },
-    "description": "新しいスライドボタンをクリックしてください",
+    "description": "スライドのサイズボタン",
     "explanationImagePath": "",
-    "explanationText": "新しいスライドボタンでスライドを追加できます。レイアウトも選択できます。"
+    "explanationText": "スライドのサイズボタンは、スライドのサイズを変更するボタンです。"
   },
   {
     "id": 2,
     "appType": "PowerPoint",
-    "tabName": "挿入",
-    "questionText": "挿入タブの中から、画像を挿入できるボタンを探してください",
-    "imagePath": "/PowerPoint画像/挿入タブ.png",
+    "tabName": "デザイン",
+    "questionText": "背景の書式設定ボタンを探してください",
+    "imagePath": "/PowerPoint画像/1-2デザインタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 20,
-      "width": 10,
-      "height": 60
+      "top": 27.526870007262165,
+      "left": 90.5,
+      "width": 3.7,
+      "height": 56.4
     },
-    "description": "画像挿入ボタンをクリックしてください",
+    "description": "背景の書式設定ボタン",
     "explanationImagePath": "",
-    "explanationText": "画像ボタンで写真やイラストをスライドに挿入できます。"
+    "explanationText": "スライドの背景（初期は白色）の色を変更などするボタンです。"
   },
   {
     "id": 3,
     "appType": "PowerPoint",
-    "tabName": "デザイン",
-    "questionText": "デザインタブの中から、テーマを変更できる部分を探してください",
-    "imagePath": "/PowerPoint画像/デザインタブ.png",
+    "tabName": "ホーム",
+    "questionText": "新しいスライドボタンを探してください",
+    "imagePath": "/PowerPoint画像/3-6ホームタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 10,
-      "width": 30,
-      "height": 60
+      "top": 24.5,
+      "left": 10.765307991290367,
+      "width": 4,
+      "height": 64.5
     },
-    "description": "テーマギャラリーをクリックしてください",
+    "description": "新しいスライドボタン",
     "explanationImagePath": "",
-    "explanationText": "テーマを変更すると、スライド全体のデザインが一括で変わります。"
+    "explanationText": "新しいスライドやアウトライン（Word）を追加したい場合に新しいスライドボタンを使います。"
   },
   {
     "id": 4,
     "appType": "PowerPoint",
-    "tabName": "アニメーション",
-    "questionText": "アニメーションタブの中から、アニメーション効果を追加できる部分を探してください",
-    "imagePath": "/PowerPoint画像/アニメーションタブ.png",
+    "tabName": "ホーム",
+    "questionText": "レイアウトボタンを探してください",
+    "imagePath": "/PowerPoint画像/3-6ホームタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 10,
-      "width": 20,
-      "height": 60
+      "top": 25.1,
+      "left": 16.5,
+      "width": 5.4,
+      "height": 21.1
     },
-    "description": "アニメーションギャラリーをクリックしてください",
+    "description": "レイアウトボタン",
     "explanationImagePath": "",
-    "explanationText": "アニメーションを追加すると、オブジェクトに動きをつけられます。"
+    "explanationText": "スライド内のテキストボックスの位置などを変更するときにレイアウトボタンを使います。"
   },
   {
     "id": 5,
     "appType": "PowerPoint",
-    "tabName": "スライドショー",
-    "questionText": "スライドショータブの中から、最初からスライドショーを開始できるボタンを探してください",
-    "imagePath": "/PowerPoint画像/スライドショータブ.png",
+    "tabName": "ホーム",
+    "questionText": "SmartArtに変換ボタンを探してください",
+    "imagePath": "/PowerPoint画像/3-6ホームタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 5,
-      "width": 10,
-      "height": 60
+      "top": 59.3,
+      "left": 50,
+      "width": 7.5,
+      "height": 22
     },
-    "description": "最初からボタンをクリックしてください",
+    "description": "SmartArtに変換ボタン",
     "explanationImagePath": "",
-    "explanationText": "最初からボタンで、1枚目のスライドからプレゼンテーションを開始できます。"
+    "explanationText": "SmartArtに変換ボタンは、テキストボックス内の文字をSmartArtに変換するときに使うボタンです。"
+  },
+  {
+    "id": 6,
+    "appType": "PowerPoint",
+    "tabName": "ホーム",
+    "questionText": "文字の間隔ボタンを探してください",
+    "imagePath": "/PowerPoint画像/3-6ホームタブ.png",
+    "targetZone": {
+      "top": 49.8,
+      "left": 29.1,
+      "width": 2.1,
+      "height": 28.2
+    },
+    "description": "文字の間隔ボタン",
+    "explanationImagePath": "",
+    "explanationText": "文字の間隔ボタンは文字と文字の間隔を変更するときに使います。\n"
+  },
+  {
+    "id": 7,
+    "appType": "PowerPoint",
+    "tabName": "挿入",
+    "questionText": "ビデオボタンを探してください",
+    "imagePath": "/PowerPoint画像/7-10挿入タブ.png",
+    "targetZone": {
+      "top": 25.5,
+      "left": 74.6,
+      "width": 3.4,
+      "height": 59.9
+    },
+    "description": "ビデオボタン",
+    "explanationImagePath": "",
+    "explanationText": "ビデオボタンは動画を挿入するときに使います。\n"
+  },
+  {
+    "id": 8,
+    "appType": "PowerPoint",
+    "tabName": "挿入",
+    "questionText": "SmartArtボタンを探してください",
+    "imagePath": "/PowerPoint画像/7-10挿入タブ.png",
+    "targetZone": {
+      "top": 28.059447983014863,
+      "left": 28.537847186895917,
+      "width": 3.7,
+      "height": 56.6
+    },
+    "description": "SmartArtボタン",
+    "explanationImagePath": "",
+    "explanationText": " SmartArtボタンは、スライドに SmartArtを追加するボタンです。\n SmartArtとは、複数の図形を組み合わせてわかりやすく表現する図解のことです。"
+  },
+  {
+    "id": 9,
+    "appType": "PowerPoint",
+    "tabName": "挿入",
+    "questionText": "3Dモデルボタンを探してください",
+    "imagePath": "/PowerPoint画像/7-10挿入タブ.png",
+    "targetZone": {
+      "top": 25.696298347641463,
+      "left": 25.9333095940584,
+      "width": 3.4,
+      "height": 56.6
+    },
+    "description": "3Dモデルボタン",
+    "explanationImagePath": "",
+    "explanationText": "3Dモデルボタンは立体的なモデルを挿入するボタンです。"
+  },
+  {
+    "id": 10,
+    "appType": "PowerPoint",
+    "tabName": "挿入",
+    "questionText": "ヘッダーとフッターボタンを探してください",
+    "imagePath": "/PowerPoint画像/7-10挿入タブ.png",
+    "targetZone": {
+      "top": 26.87787316532816,
+      "left": 54.6,
+      "width": 3,
+      "height": 55.6
+    },
+    "description": "ヘッダーとフッターボタン",
+    "explanationImagePath": "",
+    "explanationText": "ヘッダーフッターボタンは、スライドの文字が入らない上部分（ヘッダー）と下部分（フッター）の編集ができるボタンです。\n文字だけでなく、スライド番号、日付・時間なども挿入できます。"
+  },
+  {
+    "id": 11,
+    "appType": "PowerPoint",
+    "tabName": "スライドショー",
+    "questionText": "スライドショーの設定ボタンを探してください",
+    "imagePath": "/PowerPoint画像/11-12スライドショータブ.png",
+    "targetZone": {
+      "top": 29.663987229918476,
+      "left": 23.82877200122088,
+      "width": 6,
+      "height": 61.5
+    },
+    "description": "スライドショーの設定ボタン",
+    "explanationImagePath": "",
+    "explanationText": "スライドショーの設定ボタンは、スライドショーを実行する際の設定ができます。\nスライドを自動（3秒）で次のスライドに進めるなどの設定があります。"
+  },
+  {
+    "id": 12,
+    "appType": "PowerPoint",
+    "tabName": "スライドショー",
+    "questionText": "目的別スライドショーボタンを探してください",
+    "imagePath": "/PowerPoint画像/11-12スライドショータブ.png",
+    "targetZone": {
+      "top": 30.393706174106384,
+      "left": 16.7,
+      "width": 7,
+      "height": 51.4
+    },
+    "description": "目的別スライドショーボタン",
+    "explanationImagePath": "",
+    "explanationText": "目的別プレゼンテーションボタンは、すでにあるスライドの中から必要なものを選択してスライドショーとして実行できるボタンです。\nスライドショーに関わるボタンなので、スライドショータブ、と覚えましょう。"
+  },
+  {
+    "id": 13,
+    "appType": "PowerPoint",
+    "tabName": "画面切り替え",
+    "questionText": "変形ボタンを探してください",
+    "imagePath": "/PowerPoint画像/13-14画面切り替えタブ.png",
+    "targetZone": {
+      "top": 32.6,
+      "left": 9.1,
+      "width": 4,
+      "height": 45.5
+    },
+    "description": "変形ボタン",
+    "explanationImagePath": "",
+    "explanationText": "画面切り替えとはスライドショーでスライドに動きを付けて切り替える効果のことです。\n今回は、「変形」という効果を付けています。"
+  },
+  {
+    "id": 14,
+    "appType": "PowerPoint",
+    "tabName": "画面切り替え",
+    "questionText": "すべてに適用ボタンを探してください",
+    "imagePath": "/PowerPoint画像/13-14画面切り替えタブ.png",
+    "targetZone": {
+      "top": 59.2,
+      "left": 78.1,
+      "width": 6,
+      "height": 21.6
+    },
+    "description": "すべてに適用ボタン",
+    "explanationImagePath": "",
+    "explanationText": "すべてに適用ボタンは、現在の画面切り替えをすべてのスライドに適用できるボタンです。\n"
+  },
+  {
+    "id": 15,
+    "appType": "PowerPoint",
+    "tabName": "アニメーション",
+    "questionText": "ホイールボタンを探してください",
+    "imagePath": "/PowerPoint画像/15-16アニメーションタブ.png",
+    "targetZone": {
+      "top": 34.57059461262614,
+      "left": 38.8,
+      "width": 4.6,
+      "height": 41.6
+    },
+    "description": "ホイールボタン",
+    "explanationImagePath": "",
+    "explanationText": "アニメーションとは、スライド上にあるものに動きの効果を付けることです。\n今回は、ホイールというアニメーションを設定しました。"
+  },
+  {
+    "id": 16,
+    "appType": "PowerPoint",
+    "tabName": "アニメーション",
+    "questionText": "効果のオプションボタンを探してください",
+    "imagePath": "/PowerPoint画像/15-16アニメーションタブ.png",
+    "targetZone": {
+      "top": 30.2,
+      "left": 61.5,
+      "width": 3.9,
+      "height": 48.7
+    },
+    "description": "効果のオプションボタン",
+    "explanationImagePath": "",
+    "explanationText": "効果のオプションボタンは、設定したアニメーションにさらに効果を付けるボタンです。\n今回は、ズームというアニメーションに、さらに効果を付けようとしています。"
+  },
+  {
+    "id": 17,
+    "appType": "PowerPoint",
+    "tabName": "表示",
+    "questionText": "配布資料マスターボタンを探してください",
+    "imagePath": "/PowerPoint画像/17-18表示タブ.png",
+    "targetZone": {
+      "top": 26.33717679944095,
+      "left": 16.62208612258463,
+      "width": 3.3,
+      "height": 56.2
+    },
+    "description": "配布資料マスターボタン",
+    "explanationImagePath": "",
+    "explanationText": "配布資料マスターとは、印刷時の配布資料の元（テンプレート）スライドです。\n配布資料マスターボタンは、配布資料のテンプレートを編集できるボタンです。"
+  },
+  {
+    "id": 18,
+    "appType": "PowerPoint",
+    "tabName": "表示",
+    "questionText": "スライドマスターボタンを探してください",
+    "imagePath": "/PowerPoint画像/17-18表示タブ.png",
+    "targetZone": {
+      "top": 27.4,
+      "left": 14.2,
+      "width": 3.2,
+      "height": 56.5
+    },
+    "description": "スライドマスターボタン",
+    "explanationImagePath": "",
+    "explanationText": "スライドマスターとはパワーポイント内のすべてのスライドのデザインの元（テンプレート）スライドがあります。\nスライドマスターボタンは、そのテンプレートスライドを編集できるボタンです。"
+  },
+  {
+    "id": 19,
+    "appType": "PowerPoint",
+    "tabName": "図の形式",
+    "questionText": "アート効果ボタンを探してください",
+    "imagePath": "/PowerPoint画像/20-21図の形式タブ.png",
+    "targetZone": {
+      "top": 30,
+      "left": 8.2,
+      "width": 3.5,
+      "height": 45.6
+    },
+    "description": "アート効果ボタン",
+    "explanationImagePath": "",
+    "explanationText": "アート効果ボタンは、画像の見た目の質感を変えることができるボタンです。\n例えば、鉛筆で描いたような質感などあります。"
+  },
+  {
+    "id": 20,
+    "appType": "PowerPoint",
+    "tabName": "図の形式",
+    "questionText": "トリミングボタンを探してください",
+    "imagePath": "/PowerPoint画像/20-21図の形式タブ.png",
+    "targetZone": {
+      "top": 28.6,
+      "left": 86.8,
+      "width": 2.9,
+      "height": 48.3
+    },
+    "description": "トリミングボタン",
+    "explanationImagePath": "",
+    "explanationText": "トリミングボタンは、画像の上下左右の不要な部分を切り取ることができるボタンです。"
+  },
+  {
+    "id": 21,
+    "appType": "PowerPoint",
+    "tabName": "グラフのデザイン",
+    "questionText": "グラフ要素を追加ボタンを探してください",
+    "imagePath": "/PowerPoint画像/21-22グラフのデザインタブ.png",
+    "targetZone": {
+      "top": 29.549257759784076,
+      "left": 0,
+      "width": 3.7,
+      "height": 54.5
+    },
+    "description": "グラフ要素を追加ボタン",
+    "explanationImagePath": "",
+    "explanationText": "グラフの要素ボタンはグラフ内に表示される小さい数字や文字などを追加・削除するボタンです。\nグラフの操作の場合は、必ず「グラフをクリック」します。グラフをクリックしないとグラフのデザインタブが表示されません。\nグラフの操作の場合は、必ず「グラフをクリック」、これは覚えておきましょう。"
+  },
+  {
+    "id": 22,
+    "appType": "PowerPoint",
+    "tabName": "グラフのデザイン",
+    "questionText": "色の変更ボタンを探してください",
+    "imagePath": "/PowerPoint画像/21-22グラフのデザインタブ.png",
+    "targetZone": {
+      "top": 30.1,
+      "left": 7.2,
+      "width": 2.8,
+      "height": 54.9
+    },
+    "description": "色の変更ボタン",
+    "explanationImagePath": "",
+    "explanationText": "色の変更ボタンは、グラフの色を変更するボタンです。\nグラフの操作の場合は、必ず「グラフをクリック」します。グラフをクリックしないとグラフのデザインタブが表示されません。\nグラフの操作の場合は、必ず「グラフをクリック」、これは覚えておきましょう。"
   }
 ]
