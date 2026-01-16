@@ -3,80 +3,288 @@
     "id": 1,
     "appType": "Excel",
     "tabName": "ホーム",
-    "questionText": "ホームタブの中から、セルの書式設定ができるボタンを探してください",
-    "imagePath": "/Excel画像/ホームタブ.png",
+    "questionText": "ホームタブの中から、「セルを結合して中央揃え」を探してください",
+    "imagePath": "/Excel画像/1-4ホームタブ.png",
     "targetZone": {
       "top": 20,
       "left": 50,
       "width": 10,
       "height": 60
     },
-    "description": "セルの書式設定ボタンをクリックしてください",
+    "description": "セルを結合して中央揃えボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": "セルの書式設定では、数値の表示形式、フォント、罫線、塗りつぶしなどを設定できます。"
+    "explanationText": ""
   },
   {
     "id": 2,
     "appType": "Excel",
-    "tabName": "挿入",
-    "questionText": "挿入タブの中から、グラフを挿入できるボタンを探してください",
-    "imagePath": "/Excel画像/挿入タブ.png",
+    "tabName": "ホーム",
+    "questionText": "ホームタブの中から、「折り返して全体を表示する」を探してください",
+    "imagePath": "/Excel画像/1-4ホームタブ.png",
     "targetZone": {
       "top": 20,
-      "left": 30,
+      "left": 50,
       "width": 10,
       "height": 60
     },
-    "description": "グラフ挿入ボタンをクリックしてください",
+    "description": "折り返して全体を表示するボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": "グラフを挿入して、データを視覚的に表現できます。"
+    "explanationText": ""
   },
   {
     "id": 3,
     "appType": "Excel",
-    "tabName": "数式",
-    "questionText": "数式タブの中から、関数を挿入できるボタンを探してください",
-    "imagePath": "/Excel画像/数式タブ.png",
+    "tabName": "ホーム",
+    "questionText": "ホームタブの中から、「条件付き書式」を探してください",
+    "imagePath": "/Excel画像/1-4ホームタブ.png",
     "targetZone": {
       "top": 20,
-      "left": 5,
+      "left": 50,
       "width": 10,
       "height": 60
     },
-    "description": "関数の挿入ボタンをクリックしてください",
+    "description": "条件付き書式ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": "関数の挿入ダイアログを開いて、様々な関数を選択できます。"
+    "explanationText": ""
   },
   {
     "id": 4,
     "appType": "Excel",
-    "tabName": "データ",
-    "questionText": "データタブの中から、フィルターを設定できるボタンを探してください",
-    "imagePath": "/Excel画像/データタブ.png",
+    "tabName": "ホーム",
+    "questionText": "ホームタブの中から、「セルのスタイル」を探してください",
+    "imagePath": "/Excel画像/1-4ホームタブ.png",
     "targetZone": {
       "top": 20,
-      "left": 30,
+      "left": 50,
       "width": 10,
       "height": 60
     },
-    "description": "フィルターボタンをクリックしてください",
+    "description": "セルのスタイルボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": "フィルターを使って、特定の条件に合うデータだけを表示できます。"
+    "explanationText": ""
   },
   {
     "id": 5,
     "appType": "Excel",
     "tabName": "ページレイアウト",
-    "questionText": "ページレイアウトタブの中から、印刷範囲を設定できるボタンを探してください",
-    "imagePath": "/Excel画像/ページレイアウトタブ.png",
+    "questionText": "ページレイアウトタブの中から、「印刷の向き」を探してください",
+    "imagePath": "/Excel画像/5-7ページレイアウトタブ.png",
     "targetZone": {
       "top": 20,
       "left": 20,
       "width": 10,
       "height": 60
     },
-    "description": "印刷範囲ボタンをクリックしてください",
+    "description": "印刷の向きボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": "印刷範囲を設定して、必要な部分だけを印刷できます。"
+    "explanationText": ""
+  },
+  {
+    "id": 6,
+    "appType": "Excel",
+    "tabName": "ページレイアウト",
+    "questionText": "ページレイアウトタブの中から、「余白」を探してください",
+    "imagePath": "/Excel画像/5-7ページレイアウトタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 20,
+      "width": 10,
+      "height": 60
+    },
+    "description": "余白ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 7,
+    "appType": "Excel",
+    "tabName": "ページレイアウト",
+    "questionText": "ページレイアウトタブの中から、「印刷の範囲」を探してください",
+    "imagePath": "/Excel画像/5-7ページレイアウトタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 20,
+      "width": 10,
+      "height": 60
+    },
+    "description": "印刷の範囲ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 8,
+    "appType": "Excel",
+    "tabName": "挿入",
+    "questionText": "挿入タブの中から、「縦棒のスパークライン」を探してください",
+    "imagePath": "/Excel画像/8-11挿入タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "縦棒のスパークラインボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 9,
+    "appType": "Excel",
+    "tabName": "挿入",
+    "questionText": "挿入タブの中から、「リンク」を探してください",
+    "imagePath": "/Excel画像/8-11挿入タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "リンクボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 10,
+    "appType": "Excel",
+    "tabName": "挿入",
+    "questionText": "挿入タブの中から、「円グラフ」を探してください",
+    "imagePath": "/Excel画像/8-11挿入タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "円グラフボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 11,
+    "appType": "Excel",
+    "tabName": "挿入",
+    "questionText": "挿入タブの中から、「ヘッダー」を探してください",
+    "imagePath": "/Excel画像/8-11挿入タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "ヘッダーボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 12,
+    "appType": "Excel",
+    "tabName": "数式",
+    "questionText": "数式タブの中から、「数式の表示」を探してください",
+    "imagePath": "/Excel画像/12-13数式タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "数式の表示ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 13,
+    "appType": "Excel",
+    "tabName": "数式",
+    "questionText": "数式タブの中から、「数式で使用」を探してください",
+    "imagePath": "/Excel画像/12-13数式タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "数式で使用ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 14,
+    "appType": "Excel",
+    "tabName": "データ",
+    "questionText": "データタブの中から、「並べ替え」を探してください",
+    "imagePath": "/Excel画像/14データタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "並べ替えボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 15,
+    "appType": "Excel",
+    "tabName": "校閲",
+    "questionText": "校閲タブの中から、「メモ」を探してください",
+    "imagePath": "/Excel画像/15校閲タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "メモボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 16,
+    "appType": "Excel",
+    "tabName": "グラフのデザイン",
+    "questionText": "グラフのデザインタブの中から、「グラフの要素」を探してください",
+    "imagePath": "/Excel画像/16-17グラフのデザインタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "グラフの要素ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 17,
+    "appType": "Excel",
+    "tabName": "グラフのデザイン",
+    "questionText": "グラフのデザインタブの中から、「グラフの色を変更」を探してください",
+    "imagePath": "/Excel画像/16-17グラフのデザインタブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "グラフの色を変更ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
+  },
+  {
+    "id": 18,
+    "appType": "Excel",
+    "tabName": "表示",
+    "questionText": "表示タブの中から、「ウィンドウ枠の固定」を探してください",
+    "imagePath": "/Excel画像/18表示タブ.png",
+    "targetZone": {
+      "top": 20,
+      "left": 30,
+      "width": 10,
+      "height": 60
+    },
+    "description": "ウィンドウ枠の固定ボタンをクリックしてください",
+    "explanationImagePath": "",
+    "explanationText": ""
   }
 ]
