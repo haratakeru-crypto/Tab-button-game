@@ -78,7 +78,7 @@ export default function FeedbackArea({
     // 複数画像がある場合
     if (explanationImages && explanationImages.length > 0) {
       return (
-        <div className="mt-4">
+        <div>
           <div className="flex gap-4 flex-wrap justify-center">
             {explanationImages.map((img, index) => (
               <div key={index} className="flex flex-col items-center">
@@ -120,11 +120,11 @@ export default function FeedbackArea({
     }
     // 単一画像の場合
     return explanationImagePath ? (
-      <div className="mt-4">
+      <div>
         <img
           src={explanationImagePath}
           alt="解説画像"
-          className="max-w-full h-auto rounded border border-gray-200 dark:border-gray-700"
+          className="max-w-[250px] h-auto rounded border border-gray-200 dark:border-gray-700"
         />
       </div>
     ) : null;
@@ -133,12 +133,12 @@ export default function FeedbackArea({
   const ExplanationText = () => {
     if (!canEditExplanation) {
       return explanationText ? (
-        <p className="mt-2 whitespace-pre-wrap text-gray-700 dark:text-gray-200">{explanationText}</p>
+        <p className="whitespace-pre-wrap text-gray-700 dark:text-gray-200">{explanationText}</p>
       ) : null;
     }
 
     return (
-      <div className="mt-3">
+      <div>
         <textarea
           value={draftExplanation}
           onChange={(e) => setDraftExplanation(e.target.value)}
@@ -185,8 +185,16 @@ export default function FeedbackArea({
         {(explanationImagePath || (explanationImages && explanationImages.length > 0) || explanationText || canEditExplanation) && (
           <div className="mt-4 text-left bg-white/70 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
             <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">解説</h4>
-            <ExplanationImage />
-            <ExplanationText />
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* 左側: 解説テキスト */}
+              <div className="flex-1">
+                <ExplanationText />
+              </div>
+              {/* 右側: 画像 */}
+              <div className="flex-shrink-0">
+                <ExplanationImage />
+              </div>
+            </div>
           </div>
         )}
 
