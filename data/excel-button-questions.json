@@ -6,14 +6,14 @@
     "questionText": "ホームタブの中から、「セルを結合して中央揃え」を探してください",
     "imagePath": "/Excel画像/1-4ホームタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 50,
-      "width": 10,
-      "height": 60
+      "top": 53.4,
+      "left": 36.2,
+      "width": 8.6,
+      "height": 23.1
     },
     "description": "セルを結合して中央揃えボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "セルの中の文字の位置を中央に揃えるボタンです。\nセルの中の文字やセルの色を変更するときにはホームボタンを使います。"
   },
   {
     "id": 2,
@@ -22,14 +22,14 @@
     "questionText": "ホームタブの中から、「折り返して全体を表示する」を探してください",
     "imagePath": "/Excel画像/1-4ホームタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 50,
-      "width": 10,
-      "height": 60
+      "top": 29.3,
+      "left": 36.3,
+      "width": 8.4,
+      "height": 22.3
     },
     "description": "折り返して全体を表示するボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "セルの中の文字がセルの幅を超えてしまって見えない時に、2行以上にしてすべての文字を見れるようにします。\nセルの中の文字やセルの色を変更するときにはホームボタンを使います。"
   },
   {
     "id": 3,
@@ -38,14 +38,14 @@
     "questionText": "ホームタブの中から、「条件付き書式」を探してください",
     "imagePath": "/Excel画像/1-4ホームタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 50,
-      "width": 10,
-      "height": 60
+      "top": 26.9,
+      "left": 54.8,
+      "width": 3.1,
+      "height": 58.4
     },
     "description": "条件付き書式ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "セル範囲に条件（例えば数値が2000以上な文字の色やセルの中の色を赤色にする、など）をつけるボタンです。\nセルの中の文字やセルの色を変更するときにはホームボタンを使います。"
   },
   {
     "id": 4,
@@ -61,7 +61,7 @@
     },
     "description": "セルのスタイルボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "文字の種類や文字の色など複数の書式のテンプレートを設定できるボタンです。\nセルの中の文字やセルの色を変更するときにはホームボタンを使います。"
   },
   {
     "id": 5,
@@ -70,14 +70,14 @@
     "questionText": "ページレイアウトタブの中から、「印刷の向き」を探してください",
     "imagePath": "/Excel画像/5-7ページレイアウトタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 20,
-      "width": 10,
-      "height": 60
+      "top": 27.79443336183148,
+      "left": 10.1,
+      "width": 3.1,
+      "height": 65.4
     },
     "description": "印刷の向きボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "印刷する際に縦向きか横向きかを選ぶボタンです。\n印刷の見た目（レイアウト）を変更するときはページレイアウトタブを使います。\n"
   },
   {
     "id": 6,
@@ -86,14 +86,14 @@
     "questionText": "ページレイアウトタブの中から、「余白」を探してください",
     "imagePath": "/Excel画像/5-7ページレイアウトタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 20,
-      "width": 10,
-      "height": 60
+      "top": 26.7,
+      "left": 7.8,
+      "width": 2.9,
+      "height": 57.8
     },
     "description": "余白ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "印刷の時の余白部分を設定できるボタンです。\n印刷の見た目（レイアウト）を変更するときはページレイアウトタブを使います。"
   },
   {
     "id": 7,
@@ -102,14 +102,14 @@
     "questionText": "ページレイアウトタブの中から、「印刷の範囲」を探してください",
     "imagePath": "/Excel画像/5-7ページレイアウトタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 20,
-      "width": 10,
-      "height": 60
+      "top": 28.9,
+      "left": 14.755847626023208,
+      "width": 3.3,
+      "height": 56.8
     },
     "description": "印刷の範囲ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "印刷するときの印刷範囲を設定するボタンです。\n印刷の見た目（レイアウト）を変更するときはページレイアウトタブを使います。"
   },
   {
     "id": 8,
@@ -118,14 +118,14 @@
     "questionText": "挿入タブの中から、「縦棒のスパークライン」を探してください",
     "imagePath": "/Excel画像/8-11挿入タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 24.7,
+      "left": 46.3,
+      "width": 2.7,
+      "height": 50.5
     },
     "description": "縦棒のスパークラインボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "スパークライン（セルの中にだけに表示される小さなグラフ）を挿入するボタンです。\nエクセル内になにか追加するときに挿入タブを使います。"
   },
   {
     "id": 9,
@@ -134,14 +134,14 @@
     "questionText": "挿入タブの中から、「リンク」を探してください",
     "imagePath": "/Excel画像/8-11挿入タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 20.638118214716524,
+      "left": 57,
+      "width": 3.3,
+      "height": 65
     },
     "description": "リンクボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "リンクボタンとは、エクセル内の文字にURLなどを挿入して、文字をクリックするとそのURLに飛べるようにすることができるボタンです。\nエクセル内になにか追加するときに挿入タブを使います。"
   },
   {
     "id": 10,
@@ -150,14 +150,14 @@
     "questionText": "挿入タブの中から、「円グラフ」を探してください",
     "imagePath": "/Excel画像/8-11挿入タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 61.81222356252513,
+      "left": 30.7,
+      "width": 2.4,
+      "height": 32.6
     },
     "description": "円グラフボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "円グラフを選択するボタンです。\nエクセル内になにか追加するときに挿入タブを使います。"
   },
   {
     "id": 11,
@@ -166,14 +166,14 @@
     "questionText": "挿入タブの中から、「ヘッダー」を探してください",
     "imagePath": "/Excel画像/8-11挿入タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 22.3,
+      "left": 65.9,
+      "width": 3.3,
+      "height": 60.1
     },
     "description": "ヘッダーボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "余白の上部分のことをヘッダーといいます。\nエクセル内になにか追加するときに挿入タブを使います。"
   },
   {
     "id": 12,
@@ -182,14 +182,14 @@
     "questionText": "数式タブの中から、「数式の表示」を探してください",
     "imagePath": "/Excel画像/12-13数式タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 21.7,
+      "left": 58.3,
+      "width": 6.2,
+      "height": 25.3
     },
     "description": "数式の表示ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "使っているシート内の数式を表示するボタンです。\n数式に関するボタンは数式タブにあります。"
   },
   {
     "id": 13,
@@ -198,14 +198,14 @@
     "questionText": "数式タブの中から、「数式で使用」を探してください",
     "imagePath": "/Excel画像/12-13数式タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 41.3,
+      "left": 43.2,
+      "width": 5.8,
+      "height": 26.9
     },
     "description": "数式で使用ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "関数を使うときに、セルをドラッグ選択しないで選択するときに数式で使用ボタンを使います。\n数式に関するボタンは数式タブにあります。"
   },
   {
     "id": 14,
@@ -214,14 +214,14 @@
     "questionText": "データタブの中から、「並べ替え」を探してください",
     "imagePath": "/Excel画像/14データタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 25.942846071878332,
+      "left": 45.5,
+      "width": 3.1,
+      "height": 59.3
     },
     "description": "並べ替えボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "表などのセル範囲のデータを並べ替えることができます。\nセル内の「データ」を並べ替えるので「データ」タブ、と覚えましょう。"
   },
   {
     "id": 15,
@@ -230,14 +230,14 @@
     "questionText": "校閲タブの中から、「メモ」を探してください",
     "imagePath": "/Excel画像/15校閲タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 25.4,
+      "left": 38.8,
+      "width": 3.3,
+      "height": 63.2
     },
     "description": "メモボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "メモは、セルに付ける付箋（ふせん）のようなものです。\n校閲はチェックという意味もあるので、メモはチェックするもの＝校閲タブにある、と覚えましょう。"
   },
   {
     "id": 16,
@@ -246,14 +246,14 @@
     "questionText": "グラフのデザインタブの中から、「グラフの要素」を探してください",
     "imagePath": "/Excel画像/16-17グラフのデザインタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 30.9,
+      "left": 0.6,
+      "width": 3.5,
+      "height": 54.9
     },
     "description": "グラフの要素ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "グラフの要素とはグラフ内に表示される小さい数字や文字などを指します。\nグラフの操作の場合は、必ず「グラフをクリック」します。グラフをクリックしないとグラフのデザインタブが表示されません。\nグラフの操作の場合は、必ず「グラフをクリック」、これは覚えておきましょう。"
   },
   {
     "id": 17,
@@ -262,14 +262,14 @@
     "questionText": "グラフのデザインタブの中から、「グラフの色を変更」を探してください",
     "imagePath": "/Excel画像/16-17グラフのデザインタブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 31,
+      "left": 7.5,
+      "width": 3,
+      "height": 57
     },
     "description": "グラフの色を変更ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "色の変更ボタンは、グラフの色を変更するボタンです。\nグラフの操作の場合は、必ず「グラフをクリック」します。グラフをクリックしないとグラフのデザインタブが表示されません。\nグラフの操作の場合は、必ず「グラフをクリック」、これは覚えておきましょう。"
   },
   {
     "id": 18,
@@ -278,13 +278,13 @@
     "questionText": "表示タブの中から、「ウィンドウ枠の固定」を探してください",
     "imagePath": "/Excel画像/18表示タブ.png",
     "targetZone": {
-      "top": 20,
-      "left": 30,
-      "width": 10,
-      "height": 60
+      "top": 26.616538602268566,
+      "left": 54.3,
+      "width": 4.3,
+      "height": 62.1
     },
     "description": "ウィンドウ枠の固定ボタンをクリックしてください",
     "explanationImagePath": "",
-    "explanationText": ""
+    "explanationText": "ウィンドウ枠の固定ボタンは、行や列を固定しスクロールしても移動しないようにするボタンです。\nエクセル内の見え方（表示）が変わるので表示タブにある、と覚えましょう。"
   }
 ]
