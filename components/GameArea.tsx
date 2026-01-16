@@ -347,11 +347,6 @@ export default function GameArea({ question, onAnswer, debugMode = false, mode =
 
   return (
     <div className="w-full max-w-6xl mx-auto">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">問題 {question.id}</h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300">{question.questionText}</p>
-      </div>
-
       <div className="relative w-full" onClick={handleImageClick}>
         <div className="relative inline-block" style={{ position: "relative" }}>
           <img

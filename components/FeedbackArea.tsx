@@ -155,58 +155,23 @@ export default function FeedbackArea({
     );
   };
 
+  // 解説がない場合は何も表示しない
+  const hasExplanation = explanationImagePath || (explanationImages && explanationImages.length > 0) || explanationText || canEditExplanation;
+  
+  if (!hasExplanation) {
+    return null;
+  }
+
   return (
-    <div className="mt-8">
-      <div
-        className={`p-6 rounded-lg shadow-lg transition-all duration-300 ${
-          isCorrect
-            ? "bg-green-50 dark:bg-green-900/20 border-2 border-green-500"
-            : "bg-red-50 dark:bg-red-900/20 border-2 border-red-500"
-        }`}
-      >
-        <div className="flex items-center gap-3 mb-4">
-          {isCorrect ? (
-            <>
-              <span className="text-3xl">✓</span>
-              <h3 className="text-2xl font-bold text-green-700 dark:text-green-400">
-                正解です！
-              </h3>
-            </>
-          ) : (
-            <>
-              <span className="text-3xl">✗</span>
-              <h3 className="text-2xl font-bold text-red-700 dark:text-red-400">
-                不正解です
-              </h3>
-            </>
-          )}
+    <div className="pt-3 border-t border-gray-300 dark:border-gray-600">
+      <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">解説</h4>
+      <div className="flex flex-col md:flex-row gap-3">
+        <div className="flex-1">
+          <ExplanationText />
         </div>
-
-        {(explanationImagePath || (explanationImages && explanationImages.length > 0) || explanationText || canEditExplanation) && (
-          <div className="mt-4 text-left bg-white/70 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-            <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">解説</h4>
-            <div className="flex flex-col md:flex-row gap-4">
-              {/* 左側: 解説テキスト */}
-              <div className="flex-1">
-                <ExplanationText />
-              </div>
-              {/* 右側: 画像 */}
-              <div className="flex-shrink-0">
-                <ExplanationImage />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 最後の問題以外の場合のみ「次へ」ボタンを表示（最後の問題はヘッダーで対応） */}
-        {showNext && !isLastQuestion && (
-          <button
-            onClick={onNext}
-            className="mt-4 px-6 py-3 font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg bg-blue-500 hover:bg-blue-600 text-white"
-          >
-            次へ
-          </button>
-        )}
+        <div className="flex-shrink-0">
+          <ExplanationImage />
+        </div>
       </div>
     </div>
   );

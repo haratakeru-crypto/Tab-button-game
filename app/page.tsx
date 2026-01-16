@@ -351,16 +351,6 @@ export default function Home() {
               </p>
             </div>
             <div className="text-right flex flex-col items-end gap-2">
-              {/* 即時フィードバック - 常に画面上部に表示 */}
-              {isCorrect !== null && (
-                <div className={`px-4 py-2 rounded-lg font-bold text-lg ${
-                  isCorrect 
-                    ? "bg-green-500 text-white" 
-                    : "bg-red-500 text-white"
-                }`}>
-                  {isCorrect ? "✓ 正解！" : "✗ 不正解"}
-                </div>
-              )}
               <div className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                 スコア: {score.correct} / {score.total}
               </div>
@@ -438,23 +428,69 @@ export default function Home() {
           )}
         </header>
 
-        {/* ゲームエリア */}
-        <GameArea question={currentQuestion} onAnswer={handleAnswer} debugMode={debugMode} mode={mode} appType={appType} />
+        {/* 問題文 + 正誤・解説（横並び） */}
+        <div className="flex flex-col md:flex-row md:items-start gap-4 mb-6">
+          {/* 左側: 問題文（一行） */}
+          <div className="flex-shrink-0">
+            <p className="text-lg">
+              <span className="font-bold">問題 {currentQuestion.id}:</span>{" "}
+              <span className="text-gray-700 dark:text-gray-300">{currentQuestion.questionText}</span>
+            </p>
+          </div>
+          {/* 右側: 正誤 + 解説（色付き枠内） */}
+          {isCorrect !== null && (
+            <div className="flex-1">
+              <div
+                className={`p-4 rounded-lg shadow-lg ${
+                  isCorrect
+                    ? "bg-green-50 dark:bg-green-900/20 border-2 border-green-500"
+                    : "bg-red-50 dark:bg-red-900/20 border-2 border-red-500"
+                }`}
+              >
+                <div className="flex items-center justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-2">
+                    {isCorrect ? (
+                      <>
+                        <span className="text-2xl">✓</span>
+                        <span className="text-xl font-bold text-green-700 dark:text-green-400">正解です！</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-2xl">✗</span>
+                        <span className="text-xl font-bold text-red-700 dark:text-red-400">不正解です</span>
+                      </>
+                    )}
+                  </div>
+                  {currentQuestionIndex < questions.length - 1 && (
+                    <button
+                      onClick={handleNext}
+                      className="px-4 py-2 font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg bg-blue-500 hover:bg-blue-600 text-white"
+                    >
+                      次へ
+                    </button>
+                  )}
+                </div>
+                {/* 解説エリア */}
+                <FeedbackArea
+                  isCorrect={isCorrect}
+                  onNext={handleNext}
+                  showNext={isCorrect !== null}
+                  isLastQuestion={currentQuestionIndex === questions.length - 1}
+                  questionId={currentQuestion.id}
+                  explanationImagePath={currentQuestion.explanationImagePath}
+                  explanationImages={currentQuestion.explanationImages}
+                  explanationText={currentQuestion.explanationText}
+                  debugMode={debugMode}
+                  mode={mode}
+                  onExplanationSaved={handleExplanationSaved}
+                />
+              </div>
+            </div>
+          )}
+        </div>
 
-        {/* フィードバックエリア */}
-        <FeedbackArea
-          isCorrect={isCorrect}
-          onNext={handleNext}
-          showNext={isCorrect !== null}
-          isLastQuestion={currentQuestionIndex === questions.length - 1}
-          questionId={currentQuestion.id}
-          explanationImagePath={currentQuestion.explanationImagePath}
-          explanationImages={currentQuestion.explanationImages}
-          explanationText={currentQuestion.explanationText}
-          debugMode={debugMode}
-          mode={mode}
-          onExplanationSaved={handleExplanationSaved}
-        />
+        {/* ゲームエリア（画像のみ） */}
+        <GameArea question={currentQuestion} onAnswer={handleAnswer} debugMode={debugMode} mode={mode} appType={appType} />
       </div>
     </div>
   );
