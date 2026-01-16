@@ -5,10 +5,10 @@
     "questionText": "デザインタブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 4.1,
-      "left": 2.7,
-      "width": 3.5,
-      "height": 3.4
+      "top": 4.4,
+      "left": 10.109375,
+      "width": 4,
+      "height": 3.2
     },
     "description": "デザインタブをクリックしてください"
   },
@@ -18,10 +18,10 @@
     "questionText": "ファイルタブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 4.6,
-      "left": 5.4,
-      "width": 2.7,
-      "height": 2.8
+      "top": 3.967741935483871,
+      "left": 0,
+      "width": 3,
+      "height": 4
     },
     "description": "ファイルタブをクリックしてください"
   },
@@ -31,10 +31,10 @@
     "questionText": "ホームタブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 4.2,
-      "left": 10.2,
-      "width": 5.9,
-      "height": 3.1
+      "top": 4.1,
+      "left": 2.7,
+      "width": 3.5,
+      "height": 4
     },
     "description": "ホームタブをクリックしてください"
   },
@@ -44,10 +44,10 @@
     "questionText": "レイアウトタブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 3.9,
-      "left": 15.9,
-      "width": 2.7,
-      "height": 4.3
+      "top": 3.967741935483871,
+      "left": 13.40798611111111,
+      "width": 4,
+      "height": 4
     },
     "description": "レイアウトタブをクリックしてください"
   },
@@ -57,10 +57,10 @@
     "questionText": "参考資料タブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 4.5,
-      "left": 18,
-      "width": 3.1,
-      "height": 3.6
+      "top": 4.129032258064516,
+      "left": 17.2,
+      "width": 4.2,
+      "height": 4
     },
     "description": "参考資料タブをクリックしてください"
   },
@@ -70,10 +70,10 @@
     "questionText": "挿入タブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 4.6,
-      "left": 20.9,
-      "width": 2.8,
-      "height": 2.9
+      "top": 3.967741935483871,
+      "left": 5.5,
+      "width": 3,
+      "height": 4
     },
     "description": "挿入タブをクリックしてください"
   },
@@ -83,10 +83,10 @@
     "questionText": "校閲タブを探してください",
     "imagePath": "/Word画像/Word画面.png",
     "targetZone": {
-      "top": 4.2,
-      "left": 23.3,
-      "width": 2.8,
-      "height": 3.6
+      "top": 3.967741935483871,
+      "left": 25.5,
+      "width": 3.3,
+      "height": 4
     },
     "description": "校閲タブをクリックしてください"
   }
