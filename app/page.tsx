@@ -482,6 +482,7 @@ export default function Home() {
                   explanationText={currentQuestion.explanationText}
                   debugMode={debugMode}
                   mode={mode}
+                  appType={appType}
                   onExplanationSaved={handleExplanationSaved}
                 />
               </div>

@@ -17,16 +17,20 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { questionId, targetZone } = body;
+    const { questionId, targetZone, explanationText } = body as {
+      questionId?: number;
+      targetZone?: any;
+      explanationText?: string;
+    };
 
-    if (!questionId || !targetZone) {
+    if (!questionId) {
       return NextResponse.json(
-          { error: "questionIdとtargetZoneが必要です" },
+          { error: "questionIdが必要です" },
         { status: 400 }
       );
     }
 
-    // questions.jsonを読み込む
+    // questions.jsonを読み込む
     const fileContents = await fs.readFile(QUESTIONS_FILE_PATH, "utf8");
     const questions: Question[] = JSON.parse(fileContents);
 
@@ -39,8 +43,15 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // targetZoneを更新
-    questions[questionIndex].targetZone = targetZone;
+    // targetZoneを更新（提供されている場合）
+    if (targetZone) {
+      questions[questionIndex].targetZone = targetZone;
+    }
+
+    // explanationTextを更新（提供されている場合）
+    if (typeof explanationText === "string") {
+      questions[questionIndex].explanationText = explanationText;
+    }
 
     // questions.jsonに保存
     await fs.writeFile(
@@ -51,7 +62,7 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "ターゲットゾーンを更新しました",
+      message: "更新しました",
       question: questions[questionIndex],
     });
   } catch (error) {

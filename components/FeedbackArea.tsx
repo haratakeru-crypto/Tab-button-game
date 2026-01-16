@@ -25,6 +25,7 @@ interface FeedbackAreaProps {
   explanationText?: string;
   debugMode?: boolean;
   mode?: "tab" | "button";
+  appType?: "Word" | "Excel" | "PowerPoint";
   onExplanationSaved?: (questionId: number, text: string) => void;
 }
 
@@ -39,10 +40,11 @@ export default function FeedbackArea({
   explanationText,
   debugMode = false,
   mode = "tab",
+  appType = "Word",
   onExplanationSaved,
 }: FeedbackAreaProps) {
   // Hooksは常にトップレベルで呼ぶ必要がある（早期リターンの前）
-  const canEditExplanation = debugMode && mode === "button" && questionId !== undefined;
+  const canEditExplanation = debugMode && questionId !== undefined;
   const [draftExplanation, setDraftExplanation] = useState(explanationText ?? "");
 
   // explanationTextが変更された時にdraftExplanationを更新
@@ -55,10 +57,22 @@ export default function FeedbackArea({
     return null;
   }
 
+  const getApiEndpoint = () => {
+    if (appType === "Excel") {
+      return mode === "button" ? "/api/excel-button-questions" : "/api/excel-questions";
+    } else if (appType === "PowerPoint") {
+      return mode === "button" ? "/api/powerpoint-button-questions" : "/api/powerpoint-questions";
+    } else {
+      // Word（デフォルト）
+      return mode === "button" ? "/api/button-questions" : "/api/questions";
+    }
+  };
+
   const handleSaveExplanation = async (newText: string) => {
     if (!canEditExplanation || questionId === undefined) return;
     try {
-      await fetch("/api/button-questions", {
+      const apiEndpoint = getApiEndpoint();
+      await fetch(apiEndpoint, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
